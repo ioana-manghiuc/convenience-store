@@ -20,14 +20,14 @@ namespace convenience_store_.Models
             this.Receipts = new HashSet<Receipt>();
         }
     
-        public long ID_List { get; set; }
-        public long Product_ID { get; set; }
-        public long Quantity { get; set; }
-        public float Price { get; set; }
-        public bool Valid { get; set; }
+        public int ID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
+        public float Subtotal { get; set; }
+        public bool IsActive { get; set; }
     
+        public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Receipt> Receipts { get; set; }
-        public virtual Product _Product { get; set; }
     }
 }

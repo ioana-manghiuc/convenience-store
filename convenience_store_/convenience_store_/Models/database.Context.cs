@@ -25,11 +25,11 @@ namespace convenience_store_.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ProductList> lists { get; set; }
-        public virtual DbSet<Manufacturer> manufacturers { get; set; }
-        public virtual DbSet<Product> products { get; set; }
-        public virtual DbSet<Receipt> receipts { get; set; }
-        public virtual DbSet<Stock> stocks { get; set; }
-        public virtual DbSet<User> users { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductList> ProductLists { get; set; }
+        public virtual DbSet<Receipt> Receipts { get; set; }
+        public virtual DbSet<Stock> Stocks { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -90,13 +90,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>database.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductList.cs">
-      <DependentUpon>database.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Manufacturer.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
+      <DependentUpon>database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductList.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Receipt.cs">

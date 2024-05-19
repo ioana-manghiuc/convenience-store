@@ -17,21 +17,21 @@ namespace convenience_store_.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.ListsOfProducts = new HashSet<ProductList>();
+            this.ProductLists = new HashSet<ProductList>();
             this.Stocks = new HashSet<Stock>();
         }
     
-        public long ID_Product { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Barcode { get; set; }
-        public string ExpirationDate { get; set; }
+        public System.DateTime ExpirationDate { get; set; }
         public string Category { get; set; }
-        public long ID_manufacturer { get; set; }
-        public bool Valid { get; set; }
+        public int ManufacturerID { get; set; }
+        public bool IsActive { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductList> ListsOfProducts { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductList> ProductLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stock> Stocks { get; set; }
     }

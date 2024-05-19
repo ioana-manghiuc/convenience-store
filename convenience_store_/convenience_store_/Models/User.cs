@@ -11,14 +11,7 @@ namespace convenience_store_.Models
 {
     using System;
     using System.Collections.Generic;
-
-    public enum EUserType
-    {
-        Administrator,
-        Cashier,
-        None
-    }
-
+    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,11 +20,11 @@ namespace convenience_store_.Models
             this.Receipts = new HashSet<Receipt>();
         }
     
-        public long ID_User { get; set; }
+        public int ID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public EUserType UserType { get; set; }
-        public bool Valid { get; set; }
+        public string Role { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Receipt> Receipts { get; set; }

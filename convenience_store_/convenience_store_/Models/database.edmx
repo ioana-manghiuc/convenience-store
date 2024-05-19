@@ -4,326 +4,326 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="list">
+      <Schema Namespace="ModDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Manufacturer">
           <Key>
-            <PropertyRef Name="id_list" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_list" Type="bigint" Nullable="false" />
-          <Property Name="product_id" Type="bigint" Nullable="false" />
-          <Property Name="quantity" Type="bigint" Nullable="false" />
-          <Property Name="price" Type="real" Nullable="false" />
-          <Property Name="valid" Type="bit" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryOfOrigin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="manufacturer">
+        <EntityType Name="Product">
           <Key>
-            <PropertyRef Name="id_manufacturer" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_manufacturer" Type="bigint" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="origin_country" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="valid" Type="bit" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Barcode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpirationDate" Type="date" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ManufacturerID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="product">
+        <EntityType Name="ProductList">
           <Key>
-            <PropertyRef Name="id_product" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_product" Type="bigint" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="70" Nullable="false" />
-          <Property Name="barcode" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="expiration_date" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="category" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="id_manufacturer" Type="bigint" Nullable="false" />
-          <Property Name="valid" Type="bit" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Subtotal" Type="real" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="receipt">
+        <EntityType Name="Receipt">
           <Key>
-            <PropertyRef Name="id_receipt" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_receipt" Type="bigint" Nullable="false" />
-          <Property Name="payment_date" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="id_cashier" Type="bigint" Nullable="false" />
-          <Property Name="id_product_list" Type="bigint" Nullable="false" />
-          <Property Name="total_sum" Type="real" Nullable="false" />
-          <Property Name="valid" Type="bit" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="PaymentDate" Type="date" Nullable="false" />
+          <Property Name="CashierID" Type="int" Nullable="false" />
+          <Property Name="SublistID" Type="int" Nullable="false" />
+          <Property Name="Total" Type="real" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="stock">
+        <EntityType Name="Stock">
           <Key>
-            <PropertyRef Name="id_stock" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_stock" Type="bigint" Nullable="false" />
-          <Property Name="id_product" Type="bigint" Nullable="false" />
-          <Property Name="quantity" Type="bigint" />
-          <Property Name="measurement_unit" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="supply_date" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="acquisition_price" Type="real" Nullable="false" />
-          <Property Name="selling_price" Type="real" Nullable="false" />
-          <Property Name="valid" Type="bit" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitOfMeasurement" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupplyDate" Type="date" Nullable="false" />
+          <Property Name="BasePrice" Type="real" Nullable="false" />
+          <Property Name="SellingPrice" Type="real" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="user">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="id_user" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_user" Type="bigint" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="user_type" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="valid" Type="bit" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_cashier_receipt">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="receipt" Type="Self.receipt" Multiplicity="*" />
+        <Association Name="FK_List_Receipt">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="id_user" />
+            <Principal Role="ProductList">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="receipt">
-              <PropertyRef Name="id_cashier" />
+            <Dependent Role="Receipt">
+              <PropertyRef Name="SublistID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_list_receipt">
-          <End Role="list" Type="Self.list" Multiplicity="1" />
-          <End Role="receipt" Type="Self.receipt" Multiplicity="*" />
+        <Association Name="FK_Manufacturer_Product">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="list">
-              <PropertyRef Name="id_list" />
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="receipt">
-              <PropertyRef Name="id_product_list" />
+            <Dependent Role="Product">
+              <PropertyRef Name="ManufacturerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_manufacturer_product">
-          <End Role="manufacturer" Type="Self.manufacturer" Multiplicity="1" />
-          <End Role="product" Type="Self.product" Multiplicity="*" />
+        <Association Name="FK_Product_ProductList">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="manufacturer">
-              <PropertyRef Name="id_manufacturer" />
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="product">
-              <PropertyRef Name="id_manufacturer" />
+            <Dependent Role="ProductList">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_product_list">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="list" Type="Self.list" Multiplicity="*" />
+        <Association Name="FK_Product_Stock">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="id_product" />
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="list">
-              <PropertyRef Name="product_id" />
+            <Dependent Role="Stock">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_product_stock">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="stock" Type="Self.stock" Multiplicity="*" />
+        <Association Name="FK_User_Receipt">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="id_product" />
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="stock">
-              <PropertyRef Name="id_product" />
+            <Dependent Role="Receipt">
+              <PropertyRef Name="CashierID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="list" EntityType="Self.list" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="manufacturer" EntityType="Self.manufacturer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="receipt" EntityType="Self.receipt" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="stock" EntityType="Self.stock" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_cashier_receipt" Association="Self.FK_cashier_receipt">
-            <End Role="user" EntitySet="user" />
-            <End Role="receipt" EntitySet="receipt" />
+        <EntityContainer Name="ModDBStoreContainer">
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductList" EntityType="Self.ProductList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipt" EntityType="Self.Receipt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_List_Receipt" Association="Self.FK_List_Receipt">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="Receipt" EntitySet="Receipt" />
           </AssociationSet>
-          <AssociationSet Name="FK_list_receipt" Association="Self.FK_list_receipt">
-            <End Role="list" EntitySet="list" />
-            <End Role="receipt" EntitySet="receipt" />
+          <AssociationSet Name="FK_Manufacturer_Product" Association="Self.FK_Manufacturer_Product">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_manufacturer_product" Association="Self.FK_manufacturer_product">
-            <End Role="manufacturer" EntitySet="manufacturer" />
-            <End Role="product" EntitySet="product" />
+          <AssociationSet Name="FK_Product_ProductList" Association="Self.FK_Product_ProductList">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductList" EntitySet="ProductList" />
           </AssociationSet>
-          <AssociationSet Name="FK_product_list" Association="Self.FK_product_list">
-            <End Role="product" EntitySet="product" />
-            <End Role="list" EntitySet="list" />
+          <AssociationSet Name="FK_Product_Stock" Association="Self.FK_Product_Stock">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
-          <AssociationSet Name="FK_product_stock" Association="Self.FK_product_stock">
-            <End Role="product" EntitySet="product" />
-            <End Role="stock" EntitySet="stock" />
+          <AssociationSet Name="FK_User_Receipt" Association="Self.FK_User_Receipt">
+            <End Role="User" EntitySet="User" />
+            <End Role="Receipt" EntitySet="Receipt" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="list">
+      <Schema Namespace="ModDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Manufacturer">
           <Key>
-            <PropertyRef Name="id_list" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_list" Type="Int64" Nullable="false" />
-          <Property Name="product_id" Type="Int64" Nullable="false" />
-          <Property Name="quantity" Type="Int64" Nullable="false" />
-          <Property Name="price" Type="Single" Nullable="false" />
-          <Property Name="valid" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="receipts" Relationship="Self.FK_list_receipt" FromRole="list" ToRole="receipt" />
-          <NavigationProperty Name="product" Relationship="Self.FK_product_list" FromRole="list" ToRole="product" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryOfOrigin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Manufacturer_Product" FromRole="Manufacturer" ToRole="Product" />
         </EntityType>
-        <EntityType Name="manufacturer">
+        <EntityType Name="Product">
           <Key>
-            <PropertyRef Name="id_manufacturer" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_manufacturer" Type="Int64" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="origin_country" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="valid" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="products" Relationship="Self.FK_manufacturer_product" FromRole="manufacturer" ToRole="product" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Manufacturer_Product" FromRole="Product" ToRole="Manufacturer" />
+          <NavigationProperty Name="ProductLists" Relationship="Self.FK_Product_ProductList" FromRole="Product" ToRole="ProductList" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Product_Stock" FromRole="Product" ToRole="Stock" />
         </EntityType>
-        <EntityType Name="product">
+        <EntityType Name="ProductList">
           <Key>
-            <PropertyRef Name="id_product" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_product" Type="Int64" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="expiration_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id_manufacturer" Type="Int64" Nullable="false" />
-          <Property Name="valid" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="lists" Relationship="Self.FK_product_list" FromRole="product" ToRole="list" />
-          <NavigationProperty Name="manufacturer" Relationship="Self.FK_manufacturer_product" FromRole="product" ToRole="manufacturer" />
-          <NavigationProperty Name="stocks" Relationship="Self.FK_product_stock" FromRole="product" ToRole="stock" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Subtotal" Type="Single" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductList" FromRole="ProductList" ToRole="Product" />
+          <NavigationProperty Name="Receipts" Relationship="Self.FK_List_Receipt" FromRole="ProductList" ToRole="Receipt" />
         </EntityType>
-        <EntityType Name="receipt">
+        <EntityType Name="Receipt">
           <Key>
-            <PropertyRef Name="id_receipt" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_receipt" Type="Int64" Nullable="false" />
-          <Property Name="payment_date" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id_cashier" Type="Int64" Nullable="false" />
-          <Property Name="id_product_list" Type="Int64" Nullable="false" />
-          <Property Name="total_sum" Type="Single" Nullable="false" />
-          <Property Name="valid" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="list" Relationship="Self.FK_list_receipt" FromRole="receipt" ToRole="list" />
-          <NavigationProperty Name="user" Relationship="Self.FK_cashier_receipt" FromRole="receipt" ToRole="user" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CashierID" Type="Int32" Nullable="false" />
+          <Property Name="SublistID" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Single" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_List_Receipt" FromRole="Receipt" ToRole="ProductList" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Receipt" FromRole="Receipt" ToRole="User" />
         </EntityType>
-        <EntityType Name="stock">
+        <EntityType Name="Stock">
           <Key>
-            <PropertyRef Name="id_stock" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_stock" Type="Int64" Nullable="false" />
-          <Property Name="id_product" Type="Int64" Nullable="false" />
-          <Property Name="quantity" Type="Int64" />
-          <Property Name="measurement_unit" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="supply_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="acquisition_price" Type="Single" Nullable="false" />
-          <Property Name="selling_price" Type="Single" Nullable="false" />
-          <Property Name="valid" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="product" Relationship="Self.FK_product_stock" FromRole="stock" ToRole="product" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitOfMeasurement" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplyDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BasePrice" Type="Single" Nullable="false" />
+          <Property Name="SellingPrice" Type="Single" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Stock" FromRole="Stock" ToRole="Product" />
         </EntityType>
-        <EntityType Name="user">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="id_user" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id_user" Type="Int64" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="user_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="valid" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="receipts" Relationship="Self.FK_cashier_receipt" FromRole="user" ToRole="receipt" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Receipts" Relationship="Self.FK_User_Receipt" FromRole="User" ToRole="Receipt" />
         </EntityType>
-        <Association Name="FK_list_receipt">
-          <End Role="list" Type="Self.list" Multiplicity="1" />
-          <End Role="receipt" Type="Self.receipt" Multiplicity="*" />
+        <Association Name="FK_Manufacturer_Product">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="list">
-              <PropertyRef Name="id_list" />
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="receipt">
-              <PropertyRef Name="id_product_list" />
+            <Dependent Role="Product">
+              <PropertyRef Name="ManufacturerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_product_list">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="list" Type="Self.list" Multiplicity="*" />
+        <Association Name="FK_Product_ProductList">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="id_product" />
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="list">
-              <PropertyRef Name="product_id" />
+            <Dependent Role="ProductList">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_manufacturer_product">
-          <End Role="manufacturer" Type="Self.manufacturer" Multiplicity="1" />
-          <End Role="product" Type="Self.product" Multiplicity="*" />
+        <Association Name="FK_Product_Stock">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="manufacturer">
-              <PropertyRef Name="id_manufacturer" />
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="product">
-              <PropertyRef Name="id_manufacturer" />
+            <Dependent Role="Stock">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_product_stock">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="stock" Type="Self.stock" Multiplicity="*" />
+        <Association Name="FK_List_Receipt">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="id_product" />
+            <Principal Role="ProductList">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="stock">
-              <PropertyRef Name="id_product" />
+            <Dependent Role="Receipt">
+              <PropertyRef Name="SublistID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_cashier_receipt">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="receipt" Type="Self.receipt" Multiplicity="*" />
+        <Association Name="FK_User_Receipt">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="id_user" />
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="receipt">
-              <PropertyRef Name="id_cashier" />
+            <Dependent Role="Receipt">
+              <PropertyRef Name="CashierID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="lists" EntityType="Self.list" />
-          <EntitySet Name="manufacturers" EntityType="Self.manufacturer" />
-          <EntitySet Name="products" EntityType="Self.product" />
-          <EntitySet Name="receipts" EntityType="Self.receipt" />
-          <EntitySet Name="stocks" EntityType="Self.stock" />
-          <EntitySet Name="users" EntityType="Self.user" />
-          <AssociationSet Name="FK_list_receipt" Association="Self.FK_list_receipt">
-            <End Role="list" EntitySet="lists" />
-            <End Role="receipt" EntitySet="receipts" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturer" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductLists" EntityType="Self.ProductList" />
+          <EntitySet Name="Receipts" EntityType="Self.Receipt" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Manufacturer_Product" Association="Self.FK_Manufacturer_Product">
+            <End Role="Manufacturer" EntitySet="Manufacturers" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_product_list" Association="Self.FK_product_list">
-            <End Role="product" EntitySet="products" />
-            <End Role="list" EntitySet="lists" />
+          <AssociationSet Name="FK_Product_ProductList" Association="Self.FK_Product_ProductList">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductList" EntitySet="ProductLists" />
           </AssociationSet>
-          <AssociationSet Name="FK_manufacturer_product" Association="Self.FK_manufacturer_product">
-            <End Role="manufacturer" EntitySet="manufacturers" />
-            <End Role="product" EntitySet="products" />
+          <AssociationSet Name="FK_Product_Stock" Association="Self.FK_Product_Stock">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
-          <AssociationSet Name="FK_product_stock" Association="Self.FK_product_stock">
-            <End Role="product" EntitySet="products" />
-            <End Role="stock" EntitySet="stocks" />
+          <AssociationSet Name="FK_List_Receipt" Association="Self.FK_List_Receipt">
+            <End Role="ProductList" EntitySet="ProductLists" />
+            <End Role="Receipt" EntitySet="Receipts" />
           </AssociationSet>
-          <AssociationSet Name="FK_cashier_receipt" Association="Self.FK_cashier_receipt">
-            <End Role="user" EntitySet="users" />
-            <End Role="receipt" EntitySet="receipts" />
+          <AssociationSet Name="FK_User_Receipt" Association="Self.FK_User_Receipt">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Receipt" EntitySet="Receipts" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -331,75 +331,75 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="lists">
-            <EntityTypeMapping TypeName="Model.list">
-              <MappingFragment StoreEntitySet="list">
-                <ScalarProperty Name="id_list" ColumnName="id_list" />
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="valid" ColumnName="valid" />
+        <EntityContainerMapping StorageEntityContainer="ModDBStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Manufacturers">
+            <EntityTypeMapping TypeName="ModDB.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryOfOrigin" ColumnName="CountryOfOrigin" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="manufacturers">
-            <EntityTypeMapping TypeName="Model.manufacturer">
-              <MappingFragment StoreEntitySet="manufacturer">
-                <ScalarProperty Name="id_manufacturer" ColumnName="id_manufacturer" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="origin_country" ColumnName="origin_country" />
-                <ScalarProperty Name="valid" ColumnName="valid" />
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ModDB.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="Model.product">
-              <MappingFragment StoreEntitySet="product">
-                <ScalarProperty Name="id_product" ColumnName="id_product" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="barcode" ColumnName="barcode" />
-                <ScalarProperty Name="expiration_date" ColumnName="expiration_date" />
-                <ScalarProperty Name="category" ColumnName="category" />
-                <ScalarProperty Name="id_manufacturer" ColumnName="id_manufacturer" />
-                <ScalarProperty Name="valid" ColumnName="valid" />
+          <EntitySetMapping Name="ProductLists">
+            <EntityTypeMapping TypeName="ModDB.ProductList">
+              <MappingFragment StoreEntitySet="ProductList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="receipts">
-            <EntityTypeMapping TypeName="Model.receipt">
-              <MappingFragment StoreEntitySet="receipt">
-                <ScalarProperty Name="id_receipt" ColumnName="id_receipt" />
-                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
-                <ScalarProperty Name="id_cashier" ColumnName="id_cashier" />
-                <ScalarProperty Name="id_product_list" ColumnName="id_product_list" />
-                <ScalarProperty Name="total_sum" ColumnName="total_sum" />
-                <ScalarProperty Name="valid" ColumnName="valid" />
+          <EntitySetMapping Name="Receipts">
+            <EntityTypeMapping TypeName="ModDB.Receipt">
+              <MappingFragment StoreEntitySet="Receipt">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="CashierID" ColumnName="CashierID" />
+                <ScalarProperty Name="SublistID" ColumnName="SublistID" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="stocks">
-            <EntityTypeMapping TypeName="Model.stock">
-              <MappingFragment StoreEntitySet="stock">
-                <ScalarProperty Name="id_stock" ColumnName="id_stock" />
-                <ScalarProperty Name="id_product" ColumnName="id_product" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="measurement_unit" ColumnName="measurement_unit" />
-                <ScalarProperty Name="supply_date" ColumnName="supply_date" />
-                <ScalarProperty Name="acquisition_price" ColumnName="acquisition_price" />
-                <ScalarProperty Name="selling_price" ColumnName="selling_price" />
-                <ScalarProperty Name="valid" ColumnName="valid" />
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="ModDB.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitOfMeasurement" ColumnName="UnitOfMeasurement" />
+                <ScalarProperty Name="SupplyDate" ColumnName="SupplyDate" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="Model.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="id_user" ColumnName="id_user" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="user_type" ColumnName="user_type" />
-                <ScalarProperty Name="valid" ColumnName="valid" />
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ModDB.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

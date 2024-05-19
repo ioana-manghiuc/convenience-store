@@ -14,14 +14,14 @@ namespace convenience_store_.Models
     
     public partial class Receipt
     {
-        public long ID_Receipt { get; set; }
-        public string PaymentDate { get; set; }
-        public long CashierID { get; set; }
-        public long ProductListID { get; set; }
+        public int ID { get; set; }
+        public System.DateTime PaymentDate { get; set; }
+        public int CashierID { get; set; }
+        public int SublistID { get; set; }
         public float Total { get; set; }
-        public bool Valid { get; set; }
+        public bool IsActive { get; set; }
     
-        public virtual ProductList ProdList { get; set; }
-        public virtual User _User { get; set; }
+        public virtual ProductList ProductList { get; set; }
+        public virtual User User { get; set; }
     }
 }

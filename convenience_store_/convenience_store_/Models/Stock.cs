@@ -14,15 +14,15 @@ namespace convenience_store_.Models
     
     public partial class Stock
     {
-        public long ID_Stock { get; set; }
-        public long Product_ID { get; set; }
-        public Nullable<long> Quantity { get; set; }
-        public string MeasurementUnit { get; set; }
-        public string SupplyDate { get; set; }
-        public float AcquisitionPrice { get; set; }
+        public int ID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
+        public string UnitOfMeasurement { get; set; }
+        public System.DateTime SupplyDate { get; set; }
+        public float BasePrice { get; set; }
         public float SellingPrice { get; set; }
-        public bool Valid { get; set; }
+        public bool IsActive { get; set; }
     
-        public virtual Product _Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
