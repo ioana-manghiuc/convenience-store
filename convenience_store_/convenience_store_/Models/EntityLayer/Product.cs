@@ -7,6 +7,16 @@ using convenience_store_.Models.EntityLayer;
 
 namespace convenience_store_.Models
 {
+    public enum ECategory
+    {
+        Food,
+        Beverage,
+        Household,
+        PersonalCare,
+        Other,
+        None
+    }
+
     public class Product: BasePropertyChanged
     {
         // ID, Name, Barcode, ExpirationDate, Category, ManufacturerID, IsActive
@@ -62,6 +72,23 @@ namespace convenience_store_.Models
             set
             {
                 category = value;
+                NotifyPropertyChanged("Category");
+            }
+        }
+
+        public ECategory CategoryEnum
+        {
+            get
+            {
+                if (Enum.TryParse(category, out ECategory parsedCategory))
+                {
+                    return parsedCategory;
+                }
+                return ECategory.None;
+            }
+            set
+            {
+                category = value.ToString();
                 NotifyPropertyChanged("Category");
             }
         }

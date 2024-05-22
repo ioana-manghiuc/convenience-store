@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -76,6 +77,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\DataAccessLayer\DALHelper.cs" />
+    <Compile Include="Models\DataAccessLayer\ManufacturerDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ProductDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ProductListDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ReceiptDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\StockDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\UserDAL.cs" />
     <Compile Include="Models\EntityLayer\BasePropertyChanged.cs" />
     <Compile Include="Models\EntityLayer\Manufacturer.cs" />
     <Compile Include="Models\EntityLayer\Product.cs" />
@@ -117,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\BusinessLogicLayer\" />
-    <Folder Include="Models\DataAccessLayer\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
