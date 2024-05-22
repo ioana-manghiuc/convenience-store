@@ -76,12 +76,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Manufacturer.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductList.cs" />
-    <Compile Include="Models\Receipt.cs" />
-    <Compile Include="Models\Stock.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\EntityLayer\BasePropertyChanged.cs" />
+    <Compile Include="Models\EntityLayer\Manufacturer.cs" />
+    <Compile Include="Models\EntityLayer\Product.cs" />
+    <Compile Include="Models\EntityLayer\ProductList.cs" />
+    <Compile Include="Models\EntityLayer\Receipt.cs" />
+    <Compile Include="Models\EntityLayer\Stock.cs" />
+    <Compile Include="Models\EntityLayer\User.cs" />
     <Compile Include="Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -115,6 +116,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\BusinessLogicLayer\" />
+    <Folder Include="Models\DataAccessLayer\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
