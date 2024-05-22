@@ -70,7 +70,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\RelayCommand.cs" />
-    <Page Include="Start.xaml">
+    <Page Include="Views\Start.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -98,7 +98,7 @@
     <Compile Include="Models\EntityLayer\Receipt.cs" />
     <Compile Include="Models\EntityLayer\Stock.cs" />
     <Compile Include="Models\EntityLayer\User.cs" />
-    <Compile Include="Start.xaml.cs">
+    <Compile Include="Views\Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -130,9 +130,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
