@@ -77,6 +77,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\BusinessLogicLayer\ManufacturerBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProductBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProductListBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ReceiptBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\StockBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="Models\DataAccessLayer\DALHelper.cs" />
     <Compile Include="Models\DataAccessLayer\ManufacturerDAL.cs" />
     <Compile Include="Models\DataAccessLayer\ProductDAL.cs" />
@@ -124,7 +130,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\BusinessLogicLayer\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
