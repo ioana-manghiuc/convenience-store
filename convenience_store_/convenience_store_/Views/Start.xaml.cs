@@ -32,6 +32,12 @@ namespace convenience_store_
             {
                 Console.WriteLine(u.Username);
             }
+            ManufacturerDAL manufacturerDAL = new ManufacturerDAL();
+            ObservableCollection<Manufacturer> manufacturers = manufacturerDAL.GetAllManufacturers();
+            foreach (Manufacturer m in manufacturers)
+            {
+                Console.WriteLine(m.Name);
+            }
 
         }
     }

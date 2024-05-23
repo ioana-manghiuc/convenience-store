@@ -7,7 +7,7 @@ using convenience_store_.Models.EntityLayer;
 
 namespace convenience_store_.Models
 {
-    internal class Stock: BasePropertyChanged
+    public class Stock: BasePropertyChanged
     {
         // ID, ProductID, Quantity, UnitOfMeasurement, SupplyDate, BasePrice, SellingPrice, IsActive
 
