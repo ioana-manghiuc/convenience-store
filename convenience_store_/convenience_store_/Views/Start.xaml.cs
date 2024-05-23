@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using convenience_store_.Models;
+using convenience_store_.Models.DataAccessLayer;
 
 namespace convenience_store_
 {
@@ -24,6 +26,13 @@ namespace convenience_store_
         public Start()
         {
             InitializeComponent();
+            UserDAL userDAL = new UserDAL();
+            ObservableCollection<User> users = userDAL.GetAllUsers();
+            foreach (User u in users)
+            {
+                Console.WriteLine(u.Username);
+            }
+
         }
     }
 }
