@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Drawing.Text;
 using System.Windows;
 using convenience_store_.Models;
 using convenience_store_.Models.DataAccessLayer;
+using convenience_store_.Views;
+using convenience_store_.Converters_Exceptions;
 
 namespace convenience_store_
 {
@@ -32,21 +35,24 @@ namespace convenience_store_
                 Console.WriteLine(m.Name);
             }
 
-            // Print all installed fonts
-            PrintInstalledFonts();
         }
 
-        private void PrintInstalledFonts()
+        private void Login(object sender, RoutedEventArgs e)
         {
-            InstalledFontCollection installedFontCollection = new InstalledFontCollection();
-
-            // Get the array of FontFamily objects.
-            System.Drawing.FontFamily[] fontFamilies = installedFontCollection.Families;
-
-            // Print the name of each font family to the console.
-            foreach (System.Drawing.FontFamily fontFamily in fontFamilies)
+            ERole role = UserDAL.GetRoleOfUser(UsernameBox.Text, PasswordBox.Password);
+            if(role == ERole.Admin)
             {
-                Console.WriteLine(fontFamily.Name);
+                AdminView adminView = new AdminView();
+                adminView.Show();
+            }
+            else if(role == ERole.Cashier)
+            {
+                CashierView cashierView = new CashierView();
+                cashierView.Show();
+            }
+            else
+            {
+                StoreException.Error("Invalid username or password");
             }
         }
     }

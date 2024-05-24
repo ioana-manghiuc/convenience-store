@@ -12,8 +12,11 @@
         <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
         <SolidColorBrush x:Key="blue" Color="#ddf0f3"></SolidColorBrush>
         <SolidColorBrush x:Key="greyblue" Color="#d0e7ea"></SolidColorBrush>
+        <SolidColorBrush x:Key="khaki" Color="#656a50"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkgreen" Color="#243b2b"></SolidColorBrush>
+        
         <Style x:Key="BeigeLabel" TargetType="Label">
-            <Setter Property="FontSize" Value="70"/>
+            <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="Foreground" Value="{StaticResource beige}"/>
@@ -55,6 +58,38 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="{StaticResource greyblue}"/>
         </Style>
+
+        <Style x:Key="CustomPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{StaticResource greyblue}"/>
+        </Style>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource khaki}" />
+            <Setter Property="Foreground" Value="{StaticResource blue}" />
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid Name="LoginPageView" Background="{StaticResource LoginView}" Visibility="Visible">
@@ -67,22 +102,17 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Content="WELCOME" Grid.Row="1" Grid.Column="0" Style="{StaticResource BeigeLabel}" VerticalAlignment="Bottom"
-               HorizontalAlignment="Left" Margin="115,0,0,-91" Grid.ColumnSpan="2">
-            <Label.RenderTransform>
-                <RotateTransform Angle="270"/>
-            </Label.RenderTransform>
-        </Label>
+        <!--<Label Content="WELCOME" Grid.Row="1" Grid.Column="0" Style="{StaticResource BeigeLabel}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="104,89,0,0"/>-->
 
         <Label Content="CONVENIENCE" Grid.Row="0" Grid.Column="0" Style="{StaticResource BlueLabel}" VerticalAlignment="Top"
-                Grid.ColumnSpan="2" Margin="36,24,0,0" Height="75" />
+                Grid.ColumnSpan="2" Margin="36,14,0,0" Height="75" />
 
-        <Label Content="STORE" Grid.Column="1" Style="{StaticResource BlueLabel}" VerticalAlignment="Center"
-                Margin="381,0,0,0" RenderTransformOrigin="0.194,0.435"/>
+        <Label Content="STORE" Grid.Column="1" Style="{StaticResource BlueLabel}" VerticalAlignment="Top"
+                Margin="356,11,0,0" RenderTransformOrigin="0.194,0.435"/>
 
-        <TextBlock Text="Manghiuc Ioana" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="159,37,0,0" RenderTransformOrigin="0.194,0.435"/>
+        <TextBlock Text="Manghiuc Ioana" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="153,37,0,0" RenderTransformOrigin="0.194,0.435"/>
 
-        <TextBlock Text="10FL223" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="195,61,0,0" RenderTransformOrigin="0.194,0.435"/>
+        <TextBlock Text="10FL223" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="189,61,0,0" RenderTransformOrigin="0.194,0.435"/>
 
         <Grid Name="LoginDataGrid" Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -90,7 +120,7 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="20" />
                 <RowDefinition Height="50" />
-                <RowDefinition Height="25" />
+                <RowDefinition Height="20" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -105,8 +135,11 @@
             <Label Content="username" Grid.Row="1"  Grid.Column="1" Style="{StaticResource BigGreenLabel}"/>
             <Label Content="password" Grid.Row="3"  Grid.Column="1" Style="{StaticResource BigGreenLabel}"/>
 
-            <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource CustomTextBox}"/>
-            <TextBox Grid.Row="3" Grid.Column="3" Style="{StaticResource CustomTextBox}"/>
+            <TextBox Name="UsernameBox" Grid.Row="1" Grid.Column="3" Style="{StaticResource CustomTextBox}"/>
+            <PasswordBox Name="PasswordBox" Grid.Row="3" Grid.Column="3" Style="{StaticResource CustomPasswordBox}"/>
+
+            <Button Content="login" Grid.Row="5" Grid.Column="3" Height="40" Width="100" Style="{StaticResource RoundedButtonStyle}"
+                    HorizontalAlignment="Right" Click="Login"/>
 
         </Grid>
 
