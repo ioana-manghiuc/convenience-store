@@ -5,8 +5,110 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:convenience_store_"
         mc:Ignorable="d"
-        Title="start" Height="450" Width="800">
-    <Grid>
-        
+        Title="welcome !" Height="500" Width="900">
+    <Window.Resources>
+        <ImageBrush x:Key="LoginView" ImageSource="/convenience_store_;component/Resources/login.png"/>
+        <SolidColorBrush x:Key="beige" Color="#adb295"></SolidColorBrush>
+        <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
+        <SolidColorBrush x:Key="blue" Color="#ddf0f3"></SolidColorBrush>
+        <SolidColorBrush x:Key="greyblue" Color="#d0e7ea"></SolidColorBrush>
+        <Style x:Key="BeigeLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="70"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="{StaticResource beige}"/>
+        </Style>
+        <Style x:Key="GreenTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style x:Key="BlueLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="60"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource blue}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="BigGreenLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="CustomTextBox" TargetType="TextBox">
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{StaticResource greyblue}"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Name="LoginPageView" Background="{StaticResource LoginView}" Visibility="Visible">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="283"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Content="WELCOME" Grid.Row="1" Grid.Column="0" Style="{StaticResource BeigeLabel}" VerticalAlignment="Bottom"
+               HorizontalAlignment="Left" Margin="115,0,0,-91" Grid.ColumnSpan="2">
+            <Label.RenderTransform>
+                <RotateTransform Angle="270"/>
+            </Label.RenderTransform>
+        </Label>
+
+        <Label Content="CONVENIENCE" Grid.Row="0" Grid.Column="0" Style="{StaticResource BlueLabel}" VerticalAlignment="Top"
+                Grid.ColumnSpan="2" Margin="36,24,0,0" Height="75" />
+
+        <Label Content="STORE" Grid.Column="1" Style="{StaticResource BlueLabel}" VerticalAlignment="Center"
+                Margin="381,0,0,0" RenderTransformOrigin="0.194,0.435"/>
+
+        <TextBlock Text="Manghiuc Ioana" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="159,37,0,0" RenderTransformOrigin="0.194,0.435"/>
+
+        <TextBlock Text="10FL223" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="195,61,0,0" RenderTransformOrigin="0.194,0.435"/>
+
+        <Grid Name="LoginDataGrid" Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="username" Grid.Row="1"  Grid.Column="1" Style="{StaticResource BigGreenLabel}"/>
+            <Label Content="password" Grid.Row="3"  Grid.Column="1" Style="{StaticResource BigGreenLabel}"/>
+
+            <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource CustomTextBox}"/>
+            <TextBox Grid.Row="3" Grid.Column="3" Style="{StaticResource CustomTextBox}"/>
+
+        </Grid>
+
     </Grid>
 </Window>
