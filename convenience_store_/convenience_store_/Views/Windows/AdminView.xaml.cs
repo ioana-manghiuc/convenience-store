@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using convenience_store_.Views.Pages;
 
 namespace convenience_store_.Views
 {
@@ -22,6 +11,36 @@ namespace convenience_store_.Views
         public AdminView()
         {
             InitializeComponent();
+        }
+
+        private void CategoryBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new CategoryPage());
+        }
+
+        private void ManufacturerBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ManufacturerPage());
+        }
+
+        private void ProductBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ProductPage());
+        }
+
+        private void ReceiptBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ReceiptPage());
+        }
+
+        private void StockBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new StockPage());
+        }
+
+        private void UserBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new UserPage());
         }
     }
 }

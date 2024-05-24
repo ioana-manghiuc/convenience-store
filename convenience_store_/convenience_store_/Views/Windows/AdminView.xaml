@@ -5,8 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:convenience_store_.Views"
         mc:Ignorable="d"
-        Title="AdminView" Height="500" Width="900">
-    <Grid>
+        Title="administrator mode" Height="500" Width="900">
+    <Window.Resources> 
+        <SolidColorBrush x:Key="beige" Color="#d7dbc0"></SolidColorBrush>
+        <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
+        <SolidColorBrush x:Key="blue" Color="#ddf0f3"></SolidColorBrush>
+        <SolidColorBrush x:Key="greyblue" Color="#d0e7ea"></SolidColorBrush>
+        <SolidColorBrush x:Key="khaki" Color="#797d65"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkblue" Color="#65858a"></SolidColorBrush>
+        <SolidColorBrush x:Key="red" Color="#5d1705"></SolidColorBrush>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource khaki}" />
+            <Setter Property="Foreground" Value="{StaticResource red}" />
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
+    </Window.Resources>
+    
+    
+    <Grid Background="{StaticResource beige}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="650"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="categories" Grid.Column="1" Grid.Row="1" Style="{StaticResource RoundedButtonStyle}" Click="CategoryBtn"/>
+        <Button Content="manufacturers" Grid.Column="1" Grid.Row="3" Style="{StaticResource RoundedButtonStyle}" Click="ManufacturerBtn"/>
+        <Button Content="products" Grid.Column="1" Grid.Row="5" Style="{StaticResource RoundedButtonStyle}" Click="ProductBtn"/>
+        <Button Content="receipts" Grid.Column="1" Grid.Row="7" Style="{StaticResource RoundedButtonStyle}" Click="ReceiptBtn"/>
+        <Button Content="stock info" Grid.Column="1" Grid.Row="9" Style="{StaticResource RoundedButtonStyle}" Click="StockBtn"/>
+        <Button Content="users" Grid.Column="1" Grid.Row="11" Style="{StaticResource RoundedButtonStyle}" Click="UserBtn"/>
+
+        <Frame x:Name="MainFrame" Grid.Column="3" Grid.RowSpan="13" NavigationUIVisibility="Hidden"/>
+
     </Grid>
+    
 </Window>
