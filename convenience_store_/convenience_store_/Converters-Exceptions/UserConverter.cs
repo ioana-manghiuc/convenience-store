@@ -14,7 +14,9 @@ namespace convenience_store_.Converters_Exceptions
                 return new User()
                 {
                     Username = values[0].ToString(),
-                    Role = values[1].ToString()
+                    Password = values[1].ToString(),
+                    Role = values[2].ToString(),
+                    IsActive = true
                 };
             }
             return null;

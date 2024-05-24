@@ -110,7 +110,8 @@
             <Button Content="add" Style="{StaticResource RoundedButtonStyle}" Margin="0,10,30,0"/>
             <Button Content="modify" Command="{Binding ModifyCommand}" CommandParameter="{Binding ElementName=UserGrid, Path=SelectedItem}" 
                     Style="{StaticResource RoundedButtonStyle}" Margin="0,10,30,0"/>
-            <Button Content="delete" Style="{StaticResource RoundedButtonStyle}" Margin="0,10,0,0"/>
+            <Button Content="delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=UserGrid, Path=SelectedItem}" 
+                    Style="{StaticResource RoundedButtonStyle}" Margin="0,10,0,0"/>
         </WrapPanel>
 
         <Grid Grid.Column="1" Grid.Row="3">
@@ -130,7 +131,6 @@
             <TextBlock Text="username" Grid.Column="0" Grid.Row="0" Style="{StaticResource GreenBlock}"/>
             <TextBlock Text="password" Grid.Column="0" Grid.Row="1" Style="{StaticResource GreenBlock}"/>
             <TextBlock Text="role" Grid.Column="0" Grid.Row="2" Style="{StaticResource GreenBlock}"/>
-            <!--<TextBlock Text="status" Grid.Column="0" Grid.Row="4" Style="{StaticResource GreenBlock}"/>-->
 
             <TextBox Grid.Row="0" Grid.Column="2" Text ="{Binding ElementName=UserGrid, 
                 Path=SelectedItem.Username, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
@@ -138,8 +138,6 @@
                 Path=SelectedItem.Password, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
             <TextBox Grid.Row="2" Grid.Column="2" Text ="{Binding ElementName=UserGrid, 
                 Path=SelectedItem.Role, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
-            <!--<TextBox Grid.Row="3" Grid.Column="2" Text ="{Binding ElementName=UserGrid, 
-                Path=SelectedItem.IsActive, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>-->
 
         </Grid>
 

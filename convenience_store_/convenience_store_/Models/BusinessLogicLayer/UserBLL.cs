@@ -40,6 +40,19 @@ namespace convenience_store_.Models.BusinessLogicLayer
             }
         }
 
+        static public void DeleteUser(User user)
+        {
+            if(user == null || user.ID == null)
+            {
+                StoreException.Error("A user must be selected");
+            }
+            else
+            {
+                UserDAL.DeleteUser(user);
+                UserList.Remove(user);
+            }
+        }
+
         static public void GetAllRoles(int id)
         {
             RolesList.Clear();

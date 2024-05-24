@@ -38,6 +38,19 @@ namespace convenience_store_.ViewModels
             }
         }
 
+        private ICommand deleteCommand;
+        public ICommand DeleteCommand 
+        {             
+            get
+            {
+                if (deleteCommand == null)
+                {
+                    deleteCommand = new RelayCommand<User>(UserBLL.DeleteUser);
+                }
+                return deleteCommand;
+            }
+        }
+
         private ICommand changeRolesCommand;
         public ICommand ChangeRolesCommand
         {
