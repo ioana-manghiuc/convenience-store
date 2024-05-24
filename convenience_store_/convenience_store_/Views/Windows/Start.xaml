@@ -13,7 +13,7 @@
         <SolidColorBrush x:Key="blue" Color="#ddf0f3"></SolidColorBrush>
         <SolidColorBrush x:Key="greyblue" Color="#d0e7ea"></SolidColorBrush>
         <SolidColorBrush x:Key="khaki" Color="#656a50"></SolidColorBrush>
-        <SolidColorBrush x:Key="darkgreen" Color="#243b2b"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkblue" Color="#65858a"></SolidColorBrush>
         
         <Style x:Key="BeigeLabel" TargetType="Label">
             <Setter Property="FontSize" Value="30"/>
@@ -102,8 +102,6 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <!--<Label Content="WELCOME" Grid.Row="1" Grid.Column="0" Style="{StaticResource BeigeLabel}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="104,89,0,0"/>-->
-
         <Label Content="CONVENIENCE" Grid.Row="0" Grid.Column="0" Style="{StaticResource BlueLabel}" VerticalAlignment="Top"
                 Grid.ColumnSpan="2" Margin="36,14,0,0" Height="75" />
 
@@ -112,7 +110,7 @@
 
         <TextBlock Text="Manghiuc Ioana" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="153,37,0,0" RenderTransformOrigin="0.194,0.435"/>
 
-        <TextBlock Text="10FL223" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="189,61,0,0" RenderTransformOrigin="0.194,0.435"/>
+        <TextBlock Text="10LF223" Grid.Column="1" Style="{StaticResource GreenTextBlock}" Margin="189,61,0,0" RenderTransformOrigin="0.194,0.435"/>
 
         <Grid Name="LoginDataGrid" Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -138,7 +136,7 @@
             <TextBox Name="UsernameBox" Grid.Row="1" Grid.Column="3" Style="{StaticResource CustomTextBox}"/>
             <PasswordBox Name="PasswordBox" Grid.Row="3" Grid.Column="3" Style="{StaticResource CustomPasswordBox}"/>
 
-            <Button Content="login" Grid.Row="5" Grid.Column="3" Height="40" Width="100" Style="{StaticResource RoundedButtonStyle}"
+            <Button Name="LoginButton" Content="login" Grid.Row="5" Grid.Column="3" Height="40" Width="100" Style="{StaticResource RoundedButtonStyle}"
                     HorizontalAlignment="Right" Click="Login"/>
 
         </Grid>

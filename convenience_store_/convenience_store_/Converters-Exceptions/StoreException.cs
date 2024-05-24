@@ -11,7 +11,7 @@ namespace convenience_store_.Converters_Exceptions
     {
         static public void Error(string message) 
         {
-            MessageBox.Show(message, "Store Exception", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(message, "convenience store error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
