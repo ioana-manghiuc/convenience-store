@@ -5,15 +5,16 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
 
 namespace convenience_store_.Models.DataAccessLayer
 {
-    public class UserDAL
+    static public class UserDAL
     {
-        public ObservableCollection<User> GetAllUsers()
+        static public ObservableCollection<User> GetAllUsers()
         {
             using (SqlConnection connection = DALHelper.Connection)
             {
@@ -57,6 +58,31 @@ namespace convenience_store_.Models.DataAccessLayer
                 reader.Close();
             }
             return role;
+        }
+
+        static public void ModifyUser(User user)
+        {
+            using (SqlConnection con = DALHelper.Connection)
+            {
+                SqlCommand cmd = new SqlCommand("ModifyUser", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter paramUserID = new SqlParameter("@ID", user.ID);
+                SqlParameter paramUserName = new SqlParameter("@Username", user.Username);
+                SqlParameter paramUserPass = new SqlParameter("@Password", user.Password);
+                SqlParameter paramUserRole = new SqlParameter("@Role", user.Role);              
+                cmd.Parameters.Add(paramUserID);
+                cmd.Parameters.Add(paramUserName);
+                cmd.Parameters.Add(paramUserPass);
+                cmd.Parameters.Add(paramUserRole);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        static public ObservableCollection<string> GetAllRoles()
+        {
+            ObservableCollection<string> result = new ObservableCollection<string>(Enum.GetNames(typeof(ERole)));
+            return result;
         }
     }
 }

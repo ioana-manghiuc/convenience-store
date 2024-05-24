@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AttachedCommandBehavior, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AttachedCommandBehavior.2.0.0.0\lib\net35\AttachedCommandBehavior.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -134,6 +137,7 @@
     <Compile Include="Models\EntityLayer\Receipt.cs" />
     <Compile Include="Models\EntityLayer\Stock.cs" />
     <Compile Include="Models\EntityLayer\User.cs" />
+    <Compile Include="ViewModels\UserVM.cs" />
     <Compile Include="Views\Pages\CategoryPage.xaml.cs">
       <DependentUpon>CategoryPage.xaml</DependentUpon>
     </Compile>

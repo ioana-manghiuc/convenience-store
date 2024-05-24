@@ -9,7 +9,7 @@ namespace convenience_store_.Models
 {
     public enum ERole
     {
-        Admin,
+        Administrator,
         Cashier,
         None
     }

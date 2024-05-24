@@ -4,21 +4,162 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:convenience_store_.Views.Pages"
+      xmlns:vm="clr-namespace:convenience_store_.ViewModels" 
+      xmlns:behavior="clr-namespace:AttachedCommandBehavior;assembly=AttachedCommandBehavior"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="650"
+      d:DesignHeight="440" d:DesignWidth="620"
       Title="UserPage">
 
     <Page.Resources>
         <SolidColorBrush x:Key="beige" Color="#d7dbc0"></SolidColorBrush>
         <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
         <SolidColorBrush x:Key="blue" Color="#ddf0f3"></SolidColorBrush>
-        <SolidColorBrush x:Key="greyblue" Color="#d0e7ea"></SolidColorBrush>
+        <SolidColorBrush x:Key="greyblue" Color="#b9d1d5"></SolidColorBrush>
         <SolidColorBrush x:Key="khaki" Color="#797d65"></SolidColorBrush>
-        <SolidColorBrush x:Key="darkblue" Color="#65858a"></SolidColorBrush>
-        <SolidColorBrush x:Key="red" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkblue" Color="#405a5f"></SolidColorBrush>
+        <SolidColorBrush x:Key="mutedred" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="red" Color="#89280f"></SolidColorBrush>
+        <SolidColorBrush x:Key="lightbeige" Color="#e3e5d8"></SolidColorBrush>
+
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource red}"/>
+            <Setter Property="BorderThickness" Value="3"/>
+        </Style>
+
+        <Style x:Key="ColumnHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="{StaticResource mutedred}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="GridCell" TargetType="DataGridCell">
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+        </Style>
+
+        <Style x:Key="GreenBlock" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+        </Style>
+
+        <Style x:Key="CustomTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="31"/>
+            <Setter Property="Width" Value="370"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource darkblue}"/>
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource green}" />
+            <Setter Property="Foreground" Value="{StaticResource blue}" />
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </Page.Resources>
 
-    <Grid Background="{StaticResource red}">
+    <Page.DataContext>
+        <vm:UserVM></vm:UserVM>
+    </Page.DataContext>
+
+    <Grid Background="{StaticResource beige}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="180"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Name="ButtonsWP" Grid.Column="1" Grid.Row="1">
+            <Button Content="add" Style="{StaticResource RoundedButtonStyle}" Margin="0,10,30,0"/>
+            <Button Content="modify" Command="{Binding ModifyCommand}" CommandParameter="{Binding ElementName=UserGrid, Path=SelectedItem}" 
+                    Style="{StaticResource RoundedButtonStyle}" Margin="0,10,30,0"/>
+            <Button Content="delete" Style="{StaticResource RoundedButtonStyle}" Margin="0,10,0,0"/>
+        </WrapPanel>
+
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="530"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="37"/>
+                <RowDefinition Height="37"/>
+                <RowDefinition Height="37"/>
+                <RowDefinition Height="37"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="username" Grid.Column="0" Grid.Row="0" Style="{StaticResource GreenBlock}"/>
+            <TextBlock Text="password" Grid.Column="0" Grid.Row="1" Style="{StaticResource GreenBlock}"/>
+            <TextBlock Text="role" Grid.Column="0" Grid.Row="2" Style="{StaticResource GreenBlock}"/>
+            <!--<TextBlock Text="status" Grid.Column="0" Grid.Row="4" Style="{StaticResource GreenBlock}"/>-->
+
+            <TextBox Grid.Row="0" Grid.Column="2" Text ="{Binding ElementName=UserGrid, 
+                Path=SelectedItem.Username, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+            <TextBox Grid.Row="1" Grid.Column="2" Text ="{Binding ElementName=UserGrid, 
+                Path=SelectedItem.Password, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+            <TextBox Grid.Row="2" Grid.Column="2" Text ="{Binding ElementName=UserGrid, 
+                Path=SelectedItem.Role, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+            <!--<TextBox Grid.Row="3" Grid.Column="2" Text ="{Binding ElementName=UserGrid, 
+                Path=SelectedItem.IsActive, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>-->
+
+        </Grid>
+
+        <DataGrid Name="UserGrid" Grid.Column="1" Grid.Row="5" ItemsSource="{Binding UsersList}"
+                  IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Username" Binding="{Binding Username}" HeaderStyle="{StaticResource ColumnHeader}" Width="170"/>
+                <DataGridTextColumn Header="Password" Binding="{Binding Password}" HeaderStyle="{StaticResource ColumnHeader}" Width="160"/>
+                <DataGridTextColumn Header="Role" Binding="{Binding Role}" HeaderStyle="{StaticResource ColumnHeader}" Width="170"/>
+                <DataGridCheckBoxColumn Header="Active" Binding="{Binding IsActive}" HeaderStyle="{StaticResource ColumnHeader}" Width="80"/>
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Foreground" Value="{StaticResource green}"/>
+                    <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+                    <Setter Property="FontFamily" Value="Cascadia Code"/>
+                    <Setter Property="FontSize" Value="15"/>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
         
     </Grid>
 </Page>

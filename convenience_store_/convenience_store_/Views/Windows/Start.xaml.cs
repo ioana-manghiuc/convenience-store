@@ -19,7 +19,7 @@ namespace convenience_store_
         private void Login(object sender, RoutedEventArgs e)
         {
             ERole role = UserDAL.GetRoleOfUser(UsernameBox.Text, PasswordBox.Password);
-            if (role == ERole.Admin)
+            if (role == ERole.Administrator)
             {
                 AdminView adminView = new AdminView();
                 adminView.Show();
