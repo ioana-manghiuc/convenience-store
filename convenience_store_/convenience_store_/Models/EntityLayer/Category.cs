@@ -10,8 +10,8 @@ namespace convenience_store_.Models.EntityLayer
     {
         // ID, CategName, IsActive
 
-        private int? id;
-        public int? ID
+        private int id;
+        public int ID
         {
             get { return id; }
             set
@@ -32,8 +32,8 @@ namespace convenience_store_.Models.EntityLayer
             }
         }
 
-        private bool? isActive;
-        public bool? IsActive
+        private bool isActive;
+        public bool IsActive
         {
             get { return isActive; }
             set

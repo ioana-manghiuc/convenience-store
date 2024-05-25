@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using convenience_store_.Converters_Exceptions;
@@ -87,5 +88,70 @@ namespace convenience_store_.Models.DataAccessLayer
                 StoreException.Error(ex.Message);
             }
         }
+
+        static public string GetCategoryWithId(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetCategoryNameWithId", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", id);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        if (!reader.IsDBNull(reader.GetOrdinal("CategoryName")))
+                        {
+                            return reader.GetString(reader.GetOrdinal("CategoryName"));
+                        }
+                        else if (!reader.IsDBNull(reader.GetOrdinal("ErrorMessage")))
+                        {
+                            string errorMessage = reader.GetString(reader.GetOrdinal("ErrorMessage"));
+                            StoreException.Error(errorMessage);
+                        }
+                    }
+
+                    reader.Close();
+                    return null;
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
+                return null;
+            }
+        }
+
+        static public int GetCategoryIdWithName(string name)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetCategoryIdWithName", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Name", name);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        return reader.GetInt32(0);
+                    }
+
+                    reader.Close();
+                    return -1;
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
+                return -1;
+            }
+        }
+
     }
 }

@@ -54,5 +54,6 @@ namespace convenience_store_.Models.BusinessLogicLayer
                 ManufacturerDAL.DeleteManufacturer(manufacturer);
             }
         }
+
     }
 }

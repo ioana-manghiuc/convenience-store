@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using convenience_store_.Converters_Exceptions;
+using convenience_store_.Models.EntityLayer;
 
 namespace convenience_store_.Models.DataAccessLayer
 {
-    public class ProductDAL
+    static public class ProductDAL
     {
-        public ObservableCollection<Product> GetAllProducts()
+        static public ObservableCollection<Product> GetAllProducts()
         {
             using (SqlConnection connection = DALHelper.Connection)
             {
@@ -24,9 +22,18 @@ namespace convenience_store_.Models.DataAccessLayer
                     p.ID = reader.GetInt32(0);
                     p.Name = reader.GetString(1);
                     p.Barcode = reader.GetString(2);
-                    p.ExpirationDate = reader.GetDateTime(3);
+                    if (!reader.IsDBNull(3))
+                    {
+                        p.ExpirationDate = reader.GetDateTime(3);
+                    }
+                    else
+                    {
+                        p.ExpirationDate = null;
+                    }
                     p.CategoryID = reader.GetInt32(4);
+                    p.CategoryName = CategoryDAL.GetCategoryWithId(p.CategoryID);
                     p.ManufacturerID = reader.GetInt32(5);
+                    p.ManufacturerName = ManufacturerDAL.GetManufacturerWithId(p.ManufacturerID);
                     p.IsActive = reader.GetBoolean(6);
                     result.Add(p);
                 }
@@ -34,5 +41,87 @@ namespace convenience_store_.Models.DataAccessLayer
                 return result;
             }
         }
+
+        static public void AddProduct(Product product, int id)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("AddProduct", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.Parameters.AddWithValue("@Name", product.Name);
+                    command.Parameters.AddWithValue("@Barcode", product.Barcode);
+                    if (product.ExpirationDate.HasValue)
+                    {
+                        command.Parameters.AddWithValue("@ExpirationDate", product.ExpirationDate);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@ExpirationDate", System.DBNull.Value);
+                    }
+                    command.Parameters.AddWithValue("@CategoryID", product.CategoryID);
+                    command.Parameters.AddWithValue("@ManufacturerID", product.ManufacturerID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                StoreException.Error(e.Message);
+            }
+        }
+
+        static public void ModifyProduct(Product product)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("ModifyProduct", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", product.ID);
+                    command.Parameters.AddWithValue("@Name", product.Name);
+                    command.Parameters.AddWithValue("@Barcode", product.Barcode);
+                    if (product.ExpirationDate.HasValue)
+                    {
+                        command.Parameters.AddWithValue("@ExpirationDate", product.ExpirationDate);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@ExpirationDate", System.DBNull.Value);
+                    }
+                    command.Parameters.AddWithValue("@CategoryID", product.CategoryID);
+                    command.Parameters.AddWithValue("@ManufacturerID", product.ManufacturerID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                StoreException.Error(e.Message);
+            }
+        }
+
+        static public void DeleteProduct(Product product)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("DeleteProduct", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", product.ID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                StoreException.Error(e.Message);
+            }
+        } 
+
     }
 }

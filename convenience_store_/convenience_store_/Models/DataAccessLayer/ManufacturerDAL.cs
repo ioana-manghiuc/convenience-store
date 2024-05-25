@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using convenience_store_.Converters_Exceptions;
@@ -27,7 +28,7 @@ namespace convenience_store_.Models.DataAccessLayer
                 reader.Close();
                 return result;
             }
-        }
+        }    
 
         static public void AddManufacturer(Manufacturer manufacturer, int id)
         {
@@ -89,6 +90,81 @@ namespace convenience_store_.Models.DataAccessLayer
             catch (SqlException ex)
             {
                 StoreException.Error(ex.Message);
+            }
+        }
+
+        static public string GetManufacturerWithId(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetManufacturerNameWithId", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", id);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        if (!reader.IsDBNull(reader.GetOrdinal("ManufacturerName")))
+                        {
+                            return reader.GetString(reader.GetOrdinal("ManufacturerName"));
+                        }
+                        else if (!reader.IsDBNull(reader.GetOrdinal("ErrorMessage")))
+                        {
+                            string errorMessage = reader.GetString(reader.GetOrdinal("ErrorMessage"));
+                            StoreException.Error(errorMessage);
+                        }
+                    }
+
+                    reader.Close();
+                    return null;
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
+                return null;
+            }
+        }
+
+        static public int GetManufacturerIdWithName(string name)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetManufacturerIdWithName", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Name", name);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        int manufacturerIdIndex = reader.GetOrdinal("ManufacturerID");
+                        if (manufacturerIdIndex >= 0 && !reader.IsDBNull(manufacturerIdIndex))
+                        {
+                            return reader.GetInt32(manufacturerIdIndex);
+                        }
+
+                        int errorMessageIndex = reader.GetOrdinal("ErrorMessage");
+                        if (errorMessageIndex >= 0 && !reader.IsDBNull(errorMessageIndex))
+                        {
+                            string errorMessage = reader.GetString(errorMessageIndex);
+                            StoreException.Error(errorMessage);
+                        }
+                    }
+
+                    reader.Close();
+                    return -1;
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
+                return -1;
             }
         }
     }

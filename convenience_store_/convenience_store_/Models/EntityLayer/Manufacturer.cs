@@ -10,8 +10,8 @@ namespace convenience_store_.Models
     public class Manufacturer : BasePropertyChanged
     {
         // ID, Name, CountryOfOrigin, IsActive
-        private int? id;
-        public int? ID
+        private int id;
+        public int ID
         {
             get { return id; }
             set
@@ -43,8 +43,8 @@ namespace convenience_store_.Models
             }
         }
 
-        private bool? isActive;
-        public bool? IsActive
+        private bool isActive;
+        public bool IsActive
         {
             get { return isActive; }
             set

@@ -66,14 +66,36 @@ namespace convenience_store_.Models
             }
         }
 
-        private int? manufacturerID;
-        public int? ManufacturerID
+        private string categoryName;
+        public string CategoryName
+        {
+            get { return categoryName; }
+            set
+            {
+                categoryName = value;
+                NotifyPropertyChanged("CategoryName");
+            }
+        }
+
+        private int manufacturerID;
+        public int ManufacturerID
         {
             get { return manufacturerID; }
             set
             {
                 manufacturerID = value;
                 NotifyPropertyChanged("ManufacturerID");
+            }
+        }
+
+        private string manufacturerName;
+        public string ManufacturerName
+        {
+            get { return manufacturerName; }
+            set
+            {
+                manufacturerName = value;
+                NotifyPropertyChanged("ManufacturerName");
             }
         }
 

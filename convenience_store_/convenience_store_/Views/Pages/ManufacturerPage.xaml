@@ -7,7 +7,7 @@
       xmlns:vm="clr-namespace:convenience_store_.ViewModels" 
       xmlns:convert="clr-namespace:convenience_store_.Converters_Exceptions"
       mc:Ignorable="d" 
-      d:DesignHeight="480" d:DesignWidth="640"
+      d:DesignHeight="450" d:DesignWidth="640"
       Title="ManufacturerPage">
 
     <Page.Resources>
