@@ -1,11 +1,10 @@
 ﻿using convenience_store_.Converters_Exceptions;
 using convenience_store_.Models.DataAccessLayer;
 using System.Collections.ObjectModel;
-using System.Security.Policy;
 
 namespace convenience_store_.Models.BusinessLogicLayer
 {
-    public class UserBLL
+    static public class UserBLL
     {
         static public ObservableCollection<User> UserList { get; set; }
         static public ObservableCollection<string> RolesList { get; set; }

@@ -25,7 +25,7 @@ namespace convenience_store_.Models.DataAccessLayer
                     p.Name = reader.GetString(1);
                     p.Barcode = reader.GetString(2);
                     p.ExpirationDate = reader.GetDateTime(3);
-                    p.Category = reader.GetString(4);
+                    p.CategoryID = reader.GetInt32(4);
                     p.ManufacturerID = reader.GetInt32(5);
                     p.IsActive = reader.GetBoolean(6);
                     result.Add(p);

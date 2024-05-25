@@ -18,7 +18,7 @@
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource khaki}" />
             <Setter Property="Foreground" Value="{StaticResource red}" />
-            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
             <Setter Property="FontWeight" Value="UltraBold"/>
             <Setter Property="FontStyle" Value="Italic"/>
@@ -39,38 +39,44 @@
     <Grid Background="{StaticResource beige}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="30"/>
-            <ColumnDefinition Width="620"/>
+            <ColumnDefinition Width="640"/>
             <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <Button Content="categories" Grid.Column="1" Grid.Row="2" Style="{StaticResource RoundedButtonStyle}" Click="CategoryBtn"/>
-        <Button Content="manufacturers" Grid.Column="1" Grid.Row="4" Style="{StaticResource RoundedButtonStyle}" Click="ManufacturerBtn"/>
-        <Button Content="products" Grid.Column="1" Grid.Row="6" Style="{StaticResource RoundedButtonStyle}" Click="ProductBtn"/>
-        <Button Content="receipts" Grid.Column="1" Grid.Row="8" Style="{StaticResource RoundedButtonStyle}" Click="ReceiptBtn"/>
-        <Button Content="stock info" Grid.Column="1" Grid.Row="10" Style="{StaticResource RoundedButtonStyle}" Click="StockBtn"/>
-        <Button Content="users" Grid.Column="1" Grid.Row="12" Style="{StaticResource RoundedButtonStyle}" Click="UserBtn"/>
+        <Button Content="search" Grid.Column="1" Grid.Row="2" Style="{StaticResource RoundedButtonStyle}" />
+        <Button Content="categories" Grid.Column="1" Grid.Row="4" Style="{StaticResource RoundedButtonStyle}" Click="CategoryBtn"/>
+        <Button Content="manufacturers" Grid.Column="1" Grid.Row="6" Style="{StaticResource RoundedButtonStyle}" Click="ManufacturerBtn"/>
+        <Button Content="products" Grid.Column="1" Grid.Row="8" Style="{StaticResource RoundedButtonStyle}" Click="ProductBtn"/>
+        <Button Content="product lists" Grid.Column="1" Grid.Row="10" Style="{StaticResource RoundedButtonStyle}" />
+        <Button Content="receipts" Grid.Column="1" Grid.Row="12" Style="{StaticResource RoundedButtonStyle}" Click="ReceiptBtn"/>
+        <Button Content="stock info" Grid.Column="1" Grid.Row="14" Style="{StaticResource RoundedButtonStyle}" Click="StockBtn"/>
+        <Button Content="users" Grid.Column="1" Grid.Row="16" Style="{StaticResource RoundedButtonStyle}" Click="UserBtn"/>
 
-        <Frame x:Name="MainFrame" Grid.Column="3" Grid.Row="1" Grid.RowSpan="13" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" Grid.Column="3" Grid.Row="1" Grid.RowSpan="17" NavigationUIVisibility="Hidden"/>
 
     </Grid>
     
