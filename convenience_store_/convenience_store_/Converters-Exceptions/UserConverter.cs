@@ -9,7 +9,7 @@ namespace convenience_store_.Converters_Exceptions
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] != null && values[1] != null)
+            if (values != null && values.Length == 3 && values[0] != null && values[1] != null && values[2] != null)
             {
                 return new User()
                 {
@@ -21,6 +21,7 @@ namespace convenience_store_.Converters_Exceptions
             }
             return null;
         }
+
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {

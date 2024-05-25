@@ -25,6 +25,19 @@ namespace convenience_store_.ViewModels
             set => UserBLL.RolesList = value;
         }
 
+        private ICommand addCommand;
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (addCommand == null)
+                {
+                    addCommand = new RelayCommand<User>(UserBLL.AddUser);
+                }
+                return addCommand;
+            }
+        }
+
         private ICommand modifyCommand;
         public ICommand ModifyCommand
         {
