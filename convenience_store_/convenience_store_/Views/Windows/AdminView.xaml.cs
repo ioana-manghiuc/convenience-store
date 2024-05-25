@@ -12,6 +12,10 @@ namespace convenience_store_.Views
         {
             InitializeComponent();
         }
+        private void SearchBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new SearchPage());
+        }
 
         private void CategoryBtn(object sender, RoutedEventArgs e)
         {
@@ -26,6 +30,11 @@ namespace convenience_store_.Views
         private void ProductBtn(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new ProductPage());
+        }
+
+        private void ProductListBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ProductListPage());
         }
 
         private void ReceiptBtn(object sender, RoutedEventArgs e)
