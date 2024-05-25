@@ -111,11 +111,5 @@ namespace convenience_store_.Models.DataAccessLayer
                 command.ExecuteNonQuery();
             }
         }
-
-        static public ObservableCollection<string> GetAllRoles()
-        {
-            ObservableCollection<string> result = new ObservableCollection<string>(Enum.GetNames(typeof(ERole)));
-            return result;
-        }
     }
 }

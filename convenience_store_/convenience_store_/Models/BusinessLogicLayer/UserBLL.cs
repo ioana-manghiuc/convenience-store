@@ -73,14 +73,5 @@ namespace convenience_store_.Models.BusinessLogicLayer
             }
         }
 
-        static public void GetAllRoles(int id)
-        {
-            RolesList.Clear();
-            var roles = UserDAL.GetAllRoles();
-            foreach (var role in roles)
-            {
-                RolesList.Add(role);
-            }
-        }
     }
 }

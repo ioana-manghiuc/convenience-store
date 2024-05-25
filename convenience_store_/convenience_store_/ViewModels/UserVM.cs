@@ -1,6 +1,7 @@
 ﻿using convenience_store_.Models;
 using convenience_store_.Models.BusinessLogicLayer;
 using convenience_store_.Models.EntityLayer;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -11,6 +12,8 @@ namespace convenience_store_.ViewModels
         public UserVM() 
         {
             UsersList = UserBLL.GetAllUsers();
+            RolesList = new ObservableCollection<string>(Enum.GetNames(typeof(ERole)));
+            RolesList.Remove(ERole.None.ToString());
         }
 
         public ObservableCollection<User> UsersList
@@ -19,11 +22,7 @@ namespace convenience_store_.ViewModels
             set => UserBLL.UserList = value;
         }
 
-        public ObservableCollection<string> RolesList
-        {
-            get => UserBLL.RolesList;
-            set => UserBLL.RolesList = value;
-        }
+        public ObservableCollection<string> RolesList { get; set; }
 
         private ICommand addCommand;
         public ICommand AddCommand
@@ -61,19 +60,6 @@ namespace convenience_store_.ViewModels
                     deleteCommand = new RelayCommand<User>(UserBLL.DeleteUser);
                 }
                 return deleteCommand;
-            }
-        }
-
-        private ICommand changeRolesCommand;
-        public ICommand ChangeRolesCommand
-        {
-            get
-            {
-                if (changeRolesCommand == null)
-                {
-                    changeRolesCommand = new RelayCommand<int>(UserBLL.GetAllRoles);
-                }
-                return changeRolesCommand;
             }
         }
 
