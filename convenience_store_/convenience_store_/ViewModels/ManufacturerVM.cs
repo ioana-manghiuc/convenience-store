@@ -1,22 +1,24 @@
-﻿using convenience_store_.Models.BusinessLogicLayer;
+﻿using convenience_store_.Models;
+using convenience_store_.Models.BusinessLogicLayer;
 using convenience_store_.Models.EntityLayer;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace convenience_store_.ViewModels
 {
-    public class CategoryVM : BasePropertyChanged
+    public class ManufacturerVM : BasePropertyChanged
     {
-        public CategoryVM()
+        public ManufacturerVM()
         {
-            CategoryList = CategoryBLL.GetAllCategories();         
+            ManufacturerList = ManufacturerBLL.GetAllManufacturers();
         }
 
-        public ObservableCollection<Category> CategoryList
+        public ObservableCollection<Manufacturer> ManufacturerList
         {
-            get => CategoryBLL.CategoryList;
-            set => CategoryBLL.CategoryList = value;
+            get => ManufacturerBLL.ManufacturerList;
+            set => ManufacturerBLL.ManufacturerList = value;
         }
+
         private ICommand addCommand;
         public ICommand AddCommand
         {
@@ -24,7 +26,7 @@ namespace convenience_store_.ViewModels
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommand<Category>(CategoryBLL.AddCategory);
+                    addCommand = new RelayCommand<Manufacturer>(ManufacturerBLL.AddManufacturer);
                 }
                 return addCommand;
             }
@@ -37,7 +39,7 @@ namespace convenience_store_.ViewModels
             {
                 if (modifyCommand == null)
                 {
-                    modifyCommand = new RelayCommand<Category>(CategoryBLL.ModifyCategory);
+                    modifyCommand = new RelayCommand<Manufacturer>(ManufacturerBLL.ModifyManufacturer);
                 }
                 return modifyCommand;
             }
@@ -50,7 +52,7 @@ namespace convenience_store_.ViewModels
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommand<Category>(CategoryBLL.DeleteCategory);
+                    deleteCommand = new RelayCommand<Manufacturer>(ManufacturerBLL.DeleteManufacturer);
                 }
                 return deleteCommand;
             }

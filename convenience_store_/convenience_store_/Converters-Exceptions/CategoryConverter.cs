@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Windows.Data;
 using convenience_store_.Models.EntityLayer;
 
-
 namespace convenience_store_.Converters_Exceptions
 {
     public class CategoryConverter : IMultiValueConverter

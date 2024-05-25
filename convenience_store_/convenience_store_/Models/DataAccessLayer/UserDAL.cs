@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using convenience_store_.Converters_Exceptions;
 
 namespace convenience_store_.Models.DataAccessLayer
 {
@@ -76,32 +77,46 @@ namespace convenience_store_.Models.DataAccessLayer
 
         static public void ModifyUser(User user)
         {
-            using (SqlConnection connection = DALHelper.Connection)
+            try
             {
-                SqlCommand command = new SqlCommand("ModifyUser", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramUserID = new SqlParameter("@ID", user.ID);
-                SqlParameter paramUserName = new SqlParameter("@Username", user.Username);
-                SqlParameter paramUserPass = new SqlParameter("@Password", user.Password);
-                SqlParameter paramUserRole = new SqlParameter("@Role", user.Role);              
-                command.Parameters.Add(paramUserID);
-                command.Parameters.Add(paramUserName);
-                command.Parameters.Add(paramUserPass);
-                command.Parameters.Add(paramUserRole);
-                connection.Open();
-                command.ExecuteNonQuery();
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("ModifyUser", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    SqlParameter paramUserID = new SqlParameter("@ID", user.ID);
+                    SqlParameter paramUserName = new SqlParameter("@Username", user.Username);
+                    SqlParameter paramUserPass = new SqlParameter("@Password", user.Password);
+                    SqlParameter paramUserRole = new SqlParameter("@Role", user.Role);
+                    command.Parameters.Add(paramUserID);
+                    command.Parameters.Add(paramUserName);
+                    command.Parameters.Add(paramUserPass);
+                    command.Parameters.Add(paramUserRole);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch(SqlException ex)
+            {
+                StoreException.Error(ex.Message);
             }
         }
 
         static public void DeleteUser(User user)
         {
-            using(SqlConnection connection = DALHelper.Connection)
+            try
             {
-                SqlCommand command = new SqlCommand("DeleteUser", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@ID", user.ID);
-                connection.Open();
-                command.ExecuteNonQuery();
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("DeleteUser", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", user.ID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch(SqlException ex)
+            {
+                StoreException.Error(ex.Message);
             }
         }
     }

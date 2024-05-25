@@ -52,18 +52,6 @@
             <Setter Property="Foreground" Value="{StaticResource green}"/>
         </Style>
 
-        <Style x:Key="CustomComboBox" TargetType="ComboBox">
-            <Setter Property="Height" Value="31"/>
-            <Setter Property="Width" Value="370"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
-            <Setter Property="FontWeight" Value="UltraBold"/>
-            <Setter Property="Foreground" Value="{StaticResource darkblue}"/>
-            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
-
         <Style x:Key="CustomTextBox" TargetType="TextBox">
             <Setter Property="Height" Value="31"/>
             <Setter Property="Width" Value="370"/>

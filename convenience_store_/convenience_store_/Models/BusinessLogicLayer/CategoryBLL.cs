@@ -2,15 +2,12 @@
 using convenience_store_.Models.DataAccessLayer;
 using System.Collections.ObjectModel;
 using convenience_store_.Models.EntityLayer;
-using System.Net;
-using System.Linq;
 
 namespace convenience_store_.Models.BusinessLogicLayer
 {
     static public class CategoryBLL
     {
         static public ObservableCollection<Category> CategoryList { get; set; }
-        static public ObservableCollection<string> StringCategories { get; set; }
 
         static public ObservableCollection<Category> GetAllCategories()
         {
