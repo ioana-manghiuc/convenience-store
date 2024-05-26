@@ -1,0 +1,189 @@
+﻿<Page x:Class="convenience_store_.Views.CashierPages.CreateSublists"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:convenience_store_.Views.CashierPages"
+      xmlns:vm="clr-namespace:convenience_store_.ViewModels" 
+      xmlns:convert="clr-namespace:convenience_store_.Converters_Exceptions"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="660"
+      Title="CreateSublists">
+
+    <Page.Resources>
+        <SolidColorBrush x:Key="beige" Color="#d7dbc0"></SolidColorBrush>
+        <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
+        <SolidColorBrush x:Key="blue" Color="#4b575e"></SolidColorBrush>
+        <SolidColorBrush x:Key="greyblue" Color="#d0e7ea"></SolidColorBrush>
+        <SolidColorBrush x:Key="khaki" Color="#8c9177"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkblue" Color="#65858a"></SolidColorBrush>
+        <SolidColorBrush x:Key="red" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkred" Color="#47060b"></SolidColorBrush>
+        <SolidColorBrush x:Key="background" Color="#dfded4"></SolidColorBrush>
+        <SolidColorBrush x:Key="lightbeige" Color="#e3e5d8"></SolidColorBrush>
+        <SolidColorBrush x:Key="mutedred" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="light" Color="#edece6"></SolidColorBrush>
+        
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource green}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <Style x:Key="ColumnHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="GridCell" TargetType="DataGridCell">
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+        </Style>
+
+        <Style x:Key="GreenBlock" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+        </Style>
+
+        <Style x:Key="CustomTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="370"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource darkblue}"/>
+            <Setter Property="Background" Value="{StaticResource light}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="CustomComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="370"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource darkblue}"/>
+            <Setter Property="Background" Value="{StaticResource light}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource blue}" />
+            <Setter Property="Foreground" Value="{StaticResource greyblue}" />
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:ProductListVM></vm:ProductListVM>
+    </Page.DataContext>
+
+    <Grid Background="{StaticResource background}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="620"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="180"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="170"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Name="ButtonsWP" Grid.Column="1" Grid.Row="1">
+            <WrapPanel.Resources>
+                <convert:ProductListConverter x:Key="productListConverter"/>
+                <convert:StringToIntConverter x:Key="stringToIntConverter"/>
+            </WrapPanel.Resources>
+
+            <Button Content="add" Command="{Binding AddCommand}" Style="{StaticResource RoundedButtonStyle}" Margin="0,10,30,0">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource productListConverter}">
+                        <Binding ElementName="ProductsCB" Path="Text"/>
+                        <Binding ElementName="QuantityTxB" Path="Text" Converter="{StaticResource stringToIntConverter}"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="modify" Command="{Binding ModifyCommand}" CommandParameter="{Binding ElementName=SublistGrid, Path=SelectedItem}"
+        Style="{StaticResource RoundedButtonStyle}" Margin="0,10,30,0"/>
+
+            <Button Content="delete"  Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=SublistGrid, Path=SelectedItem}"
+        Style="{StaticResource RoundedButtonStyle}" Margin="0,10,0,0"/>
+        </WrapPanel>
+
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="500"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="product name" Grid.Column="0" Grid.Row="1" Style="{StaticResource GreenBlock}"/>
+            <TextBlock Text="quantity" Grid.Column="0" Grid.Row="3" Style="{StaticResource GreenBlock}"/>
+
+            <ComboBox Name="ProductsCB" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding ProductNames}" 
+              SelectedItem="{Binding ElementName=SublistGrid, Path=SelectedItem.ProductName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomComboBox}" />
+
+            <TextBox Name="QuantityTxB" Grid.Row="3" Grid.Column="2" Text ="{Binding ElementName=SublistGrid, 
+                Path=SelectedItem.Quantity, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+
+        </Grid>
+
+        <DataGrid Name="SublistGrid" Grid.Column="1" Grid.Row="5" ItemsSource="{Binding ProductLists}"
+      IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product" Binding="{Binding ProductID}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+                <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal}" HeaderStyle="{StaticResource ColumnHeader}" Width="170"/>
+                <DataGridCheckBoxColumn Header="Active" Binding="{Binding IsActive}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Foreground" Value="{StaticResource green}"/>
+                    <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+                    <Setter Property="FontFamily" Value="Cascadia Code"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+
+    </Grid>
+</Page>

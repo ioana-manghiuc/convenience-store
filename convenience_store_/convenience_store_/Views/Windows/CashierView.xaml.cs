@@ -1,16 +1,8 @@
-﻿using System;
+﻿using convenience_store_.Views.Pages;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using convenience_store_.Views.CashierPages;
 
 namespace convenience_store_.Views
 {
@@ -22,6 +14,16 @@ namespace convenience_store_.Views
         public CashierView()
         {
             InitializeComponent();
+        }
+
+        private void SearchBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new CSearch());
+        }
+
+        private void CreateSublists(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new CreateSublists());
         }
     }
 }

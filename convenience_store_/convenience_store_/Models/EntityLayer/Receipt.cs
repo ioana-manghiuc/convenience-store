@@ -122,5 +122,16 @@ namespace convenience_store_.Models
                 NotifyPropertyChanged("IsActive");
             }
         }
+
+        private bool finalized;
+        public bool Finalized
+        {
+            get { return finalized; }
+            set
+            {
+                finalized = value;
+                NotifyPropertyChanged("Finalized");
+            }
+        }
     }
 }

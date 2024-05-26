@@ -5,8 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:convenience_store_.Views"
         mc:Ignorable="d"
-        Title="cashier mode" Height="500" Width="900" ResizeMode="NoResize">
-    <Grid>
-        
+        Title="cashier mode" Height="520" Width="900" ResizeMode="NoResize">
+    <Window.Resources>
+        <SolidColorBrush x:Key="beige" Color="#d7dbc0"></SolidColorBrush>
+        <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
+        <SolidColorBrush x:Key="blue" Color="#4b575e"></SolidColorBrush>
+        <SolidColorBrush x:Key="greyblue" Color="#d0e7ea"></SolidColorBrush>
+        <SolidColorBrush x:Key="khaki" Color="#8c9177"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkblue" Color="#65858a"></SolidColorBrush>
+        <SolidColorBrush x:Key="red" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkred" Color="#47060b"></SolidColorBrush>
+        <SolidColorBrush x:Key="background" Color="#dfded4"></SolidColorBrush>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource blue}" />
+            <Setter Property="Foreground" Value="{StaticResource background}" />
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+
+    <Grid Background="{StaticResource background}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="650"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="165"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource RoundedButtonStyle}" Width="50" Height="50" Grid.RowSpan="2" HorizontalAlignment="Left"
+                 Click="SearchBtn">
+            <Button.Content>
+                <Image Source="pack://application:,,,/convenience_store_;component/Resources/search02.png" Width="50" Height="50"/>
+            </Button.Content>
+        </Button>
+
+        <Button Content="create lists" Grid.Column="1" Grid.Row="3" Style="{StaticResource RoundedButtonStyle}" Click="CreateSublists" />
+        <Button Content="create links" Grid.Column="1" Grid.Row="5" Style="{StaticResource RoundedButtonStyle}"   />
+        <Button Content="create receipt" Grid.Column="1" Grid.Row="7" Style="{StaticResource RoundedButtonStyle}"   />
+        <Button Content="finalize receipt" Grid.Column="1" Grid.Row="9" Style="{StaticResource RoundedButtonStyle}"   />
+
+        <Frame x:Name="MainFrame" Grid.Column="3" Grid.Row="1" Grid.RowSpan="10" NavigationUIVisibility="Hidden"/>
+
     </Grid>
 </Window>

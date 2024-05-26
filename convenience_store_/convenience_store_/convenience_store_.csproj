@@ -91,6 +91,14 @@
     <Compile Include="ViewModels\ProductVM.cs" />
     <Compile Include="ViewModels\ReceiptVM.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Page Include="Views\CashierPages\CreateSublists.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CashierPages\CSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\CategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +169,12 @@
     <Compile Include="Models\EntityLayer\User.cs" />
     <Compile Include="ViewModels\StockVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
+    <Compile Include="Views\CashierPages\CreateSublists.xaml.cs">
+      <DependentUpon>CreateSublists.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CashierPages\CSearch.xaml.cs">
+      <DependentUpon>CSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\CategoryPage.xaml.cs">
       <DependentUpon>CategoryPage.xaml</DependentUpon>
     </Compile>
@@ -232,6 +246,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\search02.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

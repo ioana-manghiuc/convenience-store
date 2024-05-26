@@ -28,6 +28,7 @@ namespace convenience_store_.Models.DataAccessLayer
                     r.Sublists = ProductListDAL.GetListsFromReceipt(r.ID);
                     r.Total = reader.IsDBNull(3) ? 0.0f : (float)reader.GetDouble(3);
                     r.IsActive = reader.GetBoolean(4);
+                    r.Finalized = reader.GetBoolean(5);
                     result.Add(r);
                 }
                 reader.Close();
