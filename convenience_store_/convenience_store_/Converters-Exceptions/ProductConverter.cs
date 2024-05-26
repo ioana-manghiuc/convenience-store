@@ -9,13 +9,15 @@ namespace convenience_store_.Converters_Exceptions
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values != null && values.Length == 5 && values[0] != null && values[1] != null && values[3] != null && values[4] != null)
+            if (values != null && values.Length == 5 && values[0] != null && values[1] != null &&
+                values[2] != null && values[3] != null && values[4] != null)
             {
                 DateTime? expirationDate = null;
                 if (DateTime.TryParse(values[2]?.ToString(), out DateTime parsedDate))
                 {
                     expirationDate = parsedDate;
                 }
+
 
                 return new Product()
                 {

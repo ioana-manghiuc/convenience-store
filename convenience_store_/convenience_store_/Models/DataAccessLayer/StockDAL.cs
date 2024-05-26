@@ -22,6 +22,7 @@ namespace convenience_store_.Models.DataAccessLayer
                     Stock s = new Stock();
                     s.ID = reader.GetInt32(0);
                     s.ProductID = reader.GetInt32(1);
+                    s.ProductName = ProductDAL.GetProductWithId(s.ProductID);
                     s.Quantity = reader.GetInt32(2);
                     s.UnitOfMeasurement = reader.GetString(3);
                     s.SupplyDate = reader.GetDateTime(4);
@@ -33,6 +34,58 @@ namespace convenience_store_.Models.DataAccessLayer
                 reader.Close();
                 return result;
             }
+        }
+
+        static public void AddStock(Stock stock, int id)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("AddStock", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.Parameters.AddWithValue("@ProductID", stock.ProductID);
+                    command.Parameters.AddWithValue("@Quantity", stock.Quantity);
+                    command.Parameters.AddWithValue("@UnitOfMeasurement", stock.UnitOfMeasurement);
+                    command.Parameters.AddWithValue("@SupplyDate", stock.SupplyDate);
+                    command.Parameters.AddWithValue("@BasePrice", stock.BasePrice);
+                    stock.SellingPrice = CalculateSellingPrice(stock.BasePrice);
+                    command.Parameters.AddWithValue("@SellingPrice", stock.SellingPrice);
+                    command.Parameters.AddWithValue("@IsActive", true);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                StoreException.Error(e.Message);
+            }
+        }
+
+        static public void ModifyStock(Stock stock)
+        {
+            try
+            {
+                using(SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("ModifyStock", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", stock.ID);
+                    command.Parameters.AddWithValue("@NewSellingPrice", stock.SellingPrice);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                StoreException.Error(e.Message);
+            }
+        }
+
+        static public float CalculateSellingPrice(float basePrice)
+        {
+            return basePrice + (basePrice * VAT / 100);
         }
 
         static public float GetSellingPriceOfProduct(int id)
@@ -65,6 +118,8 @@ namespace convenience_store_.Models.DataAccessLayer
                 return 0;
             }
         }
+
+        const int VAT = 19;
 
     }
 }

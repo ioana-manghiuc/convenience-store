@@ -11,8 +11,8 @@ namespace convenience_store_.Models
     {
         // ID, ProductID, Quantity, UnitOfMeasurement, SupplyDate, BasePrice, SellingPrice, IsActive
 
-        private int? id;
-        public int? ID
+        private int id;
+        public int ID
         {
             get { return id; }
             set
@@ -22,8 +22,8 @@ namespace convenience_store_.Models
             }
         }
 
-        private int? productId;
-        public int? ProductID
+        private int productId;
+        public int ProductID
         {
             get { return productId; }
             set
@@ -33,8 +33,19 @@ namespace convenience_store_.Models
             }
         }
 
-        private int? quantity;
-        public int? Quantity
+        private string productName;
+        public string ProductName
+        {
+            get { return productName; }
+            set
+            {
+                productName = value;
+                NotifyPropertyChanged("ProductName");
+            }
+        }
+
+        private int quantity;
+        public int Quantity
         {
             get { return quantity; }
             set
@@ -66,8 +77,8 @@ namespace convenience_store_.Models
             }
         }
 
-        private float? basePrince;
-        public float? BasePrice
+        private float basePrince;
+        public float BasePrice
         {
             get { return basePrince; }
             set
@@ -77,8 +88,8 @@ namespace convenience_store_.Models
             }
         }
 
-        private float? sellingPrice;
-        public float? SellingPrice
+        private float sellingPrice;
+        public float SellingPrice
         {
             get { return sellingPrice; }
             set
@@ -88,8 +99,8 @@ namespace convenience_store_.Models
             }
         }
 
-        private bool? isActive;
-        public bool? IsActive
+        private bool isActive;
+        public bool IsActive
         {
             get { return isActive; }
             set

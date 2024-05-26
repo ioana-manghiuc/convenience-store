@@ -4,11 +4,217 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:convenience_store_.Views.Pages"
+      xmlns:vm="clr-namespace:convenience_store_.ViewModels" 
+      xmlns:convert="clr-namespace:convenience_store_.Converters_Exceptions"
       mc:Ignorable="d" 
-      d:DesignHeight="480" d:DesignWidth="640"
+      d:DesignHeight="440" d:DesignWidth="640"
       Title="StockPage">
 
-    <Grid>
+    <Page.Resources>
+        <SolidColorBrush x:Key="beige" Color="#d7dbc0"></SolidColorBrush>
+        <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
+        <SolidColorBrush x:Key="blue" Color="#ddf0f3"></SolidColorBrush>
+        <SolidColorBrush x:Key="greyblue" Color="#b9d1d5"></SolidColorBrush>
+        <SolidColorBrush x:Key="khaki" Color="#797d65"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkblue" Color="#405a5f"></SolidColorBrush>
+        <SolidColorBrush x:Key="mutedred" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="red" Color="#89280f"></SolidColorBrush>
+        <SolidColorBrush x:Key="lightbeige" Color="#e3e5d8"></SolidColorBrush>
+
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource red}"/>
+            <Setter Property="BorderThickness" Value="3"/>
+        </Style>
+
+        <Style x:Key="ColumnHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="{StaticResource mutedred}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="GridCell" TargetType="DataGridCell">
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+        </Style>
+
+        <Style x:Key="GreenBlock" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+        </Style>
+
+        <Style x:Key="CustomTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="370"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource darkblue}"/>
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="CustomComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="370"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource darkblue}"/>
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="CustomDatePicker" TargetType="DatePicker">
+            <Setter Property="Height" Value="29"/>
+            <Setter Property="Width" Value="370"/>
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource darkblue}"/>
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource green}" />
+            <Setter Property="Foreground" Value="{StaticResource blue}" />
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <convert:StockConverter x:Key="stockConverter"/>
+        <convert:StringToIntConverter x:Key="stringToIntConverter"/>
+        <convert:StringToFloatConverter x:Key="stringToFloatConverter"/>
         
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:StockVM></vm:StockVM>
+    </Page.DataContext>
+
+    <Grid Background="{StaticResource beige}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="620"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="190"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="170"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="modify" Command="{Binding ModifyCommand}" CommandParameter="{Binding ElementName=StockGrid, Path=SelectedItem}"
+                Grid.Column="1" Grid.Row="1" Style="{StaticResource RoundedButtonStyle}" Margin="0,10,0,0"/>
+
+        <Button Content="add" Command="{Binding AddCommand}" Style="{StaticResource RoundedButtonStyle}" Margin="0,10,20,0" 
+                Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource stockConverter}">
+                    <Binding ElementName="ProductsCB" Path="Text"/>
+                    <Binding ElementName="QuantityTxB" Path="Text" Converter="{StaticResource stringToIntConverter}"/>
+                    <Binding ElementName="UnitTxB" Path="Text"/>
+                    <Binding ElementName="ExpDateDP" Path="Text"/>
+                    <Binding ElementName="BPriceTxB" Path="Text" Converter="{StaticResource stringToFloatConverter}"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="500"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="product name" Grid.Column="0" Grid.Row="0" Style="{StaticResource GreenBlock}"/>
+            <TextBlock Text="quantity" Grid.Column="0" Grid.Row="1" Style="{StaticResource GreenBlock}"/>
+            <TextBlock Text="unit of measurement" Grid.Column="0" Grid.Row="2" Style="{StaticResource GreenBlock}" FontSize="20"/>
+            <TextBlock Text="supply date" Grid.Column="0" Grid.Row="3" Style="{StaticResource GreenBlock}"/>
+            <TextBlock Text="base price" Grid.Column="0" Grid.Row="4" Style="{StaticResource GreenBlock}"/>
+            <TextBlock Text="selling price" Grid.Column="0" Grid.Row="5" Style="{StaticResource GreenBlock}"/>
+
+            <TextBox Name="SellingPriceTxB" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="110,0,0,0" Width="200" Text ="{Binding ElementName=StockGrid, 
+                    Path=SelectedItem.Quantity, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+
+            <ComboBox Name="ProductsCB" Grid.Row="0" Grid.Column="2" ItemsSource="{Binding ProductNames}" 
+                    SelectedItem="{Binding ElementName=StockGrid, Path=SelectedItem.ProductName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomComboBox}" />
+
+            <TextBox Name="QuantityTxB" Grid.Row="1" Grid.Column="2" Text ="{Binding ElementName=StockGrid, 
+                    Path=SelectedItem.Quantity, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+
+            <TextBox Name="UnitTxB" Grid.Row="2" Grid.Column="2" Text ="{Binding ElementName=StockGrid, 
+                    Path=SelectedItem.UnitOfMeasurement, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+
+            <DatePicker Name="ExpDateDP" Grid.Row="3" Grid.Column="2" SelectedDate="{Binding ElementName=StockGrid, 
+                    Path=SelectedItem.SupplyDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CustomDatePicker}"/>
+
+            <TextBox Name="BPriceTxB" Grid.Row="4" Grid.Column="2" Text ="{Binding ElementName=StockGrid, 
+                    Path=SelectedItem.BasePrice, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+
+            <TextBox Name="SPriceTxB" Grid.Row="5" Grid.Column="2" Text ="{Binding ElementName=StockGrid, 
+                    Path=SelectedItem.SellingPrice, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
+
+        </Grid>
+
+        <DataGrid Name="StockGrid" Grid.Column="1" Grid.Row="5" ItemsSource="{Binding StockList}"
+       IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product" Binding="{Binding ProductID}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" HeaderStyle="{StaticResource ColumnHeader}" Width="90"/>
+                <DataGridTextColumn Header="Unit" Binding="{Binding UnitOfMeasurement}" HeaderStyle="{StaticResource ColumnHeader}" Width="70"/>
+                <DataGridTextColumn Header="Supply Date" Binding="{Binding SupplyDate}" HeaderStyle="{StaticResource ColumnHeader}" Width="150"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding SellingPrice}" HeaderStyle="{StaticResource ColumnHeader}" Width="60"/>
+                <DataGridCheckBoxColumn Header="Active" Binding="{Binding IsActive}" HeaderStyle="{StaticResource ColumnHeader}" Width="100"/>
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Foreground" Value="{StaticResource green}"/>
+                    <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+                    <Setter Property="FontFamily" Value="Cascadia Code"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+
     </Grid>
 </Page>

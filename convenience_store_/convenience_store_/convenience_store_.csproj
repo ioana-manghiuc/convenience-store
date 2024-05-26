@@ -77,7 +77,9 @@
     <Compile Include="Converters-Exceptions\ManufacturerConverter.cs" />
     <Compile Include="Converters-Exceptions\ProductConverter.cs" />
     <Compile Include="Converters-Exceptions\ProductListConverter.cs" />
+    <Compile Include="Converters-Exceptions\StockConverter.cs" />
     <Compile Include="Converters-Exceptions\StoreException.cs" />
+    <Compile Include="Converters-Exceptions\StringToFloatConverter.cs" />
     <Compile Include="Converters-Exceptions\StringToIntConverter.cs" />
     <Compile Include="Converters-Exceptions\UserConverter.cs" />
     <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="Models\EntityLayer\Receipt.cs" />
     <Compile Include="Models\EntityLayer\Stock.cs" />
     <Compile Include="Models\EntityLayer\User.cs" />
+    <Compile Include="ViewModels\StockVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
     <Compile Include="Views\Pages\CategoryPage.xaml.cs">
       <DependentUpon>CategoryPage.xaml</DependentUpon>
