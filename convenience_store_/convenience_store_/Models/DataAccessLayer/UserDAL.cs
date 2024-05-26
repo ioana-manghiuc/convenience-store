@@ -119,5 +119,57 @@ namespace convenience_store_.Models.DataAccessLayer
                 StoreException.Error(ex.Message);
             }
         }
+
+        static public string GetUsernameWithId(int id)
+        {
+            try
+            {
+                using(SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetUsernameWithId", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", id);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read(); 
+                            return reader.GetString(0);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
+                return null;
+            }
+        }
+
+        static public int GetIdOfUser(string username)
+        {
+            try
+            {
+                using(SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetIdOfUser", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Username", username);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    return reader.GetInt32(0);
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
+                return 0;
+            }
+        }
     }
 }

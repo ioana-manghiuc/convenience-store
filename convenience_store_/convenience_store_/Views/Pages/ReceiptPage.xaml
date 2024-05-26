@@ -4,11 +4,160 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:convenience_store_.Views.Pages"
+      xmlns:vm="clr-namespace:convenience_store_.ViewModels" 
+      xmlns:convert="clr-namespace:convenience_store_.Converters_Exceptions"
       mc:Ignorable="d" 
-      d:DesignHeight="480" d:DesignWidth="640"
+      d:DesignHeight="440" d:DesignWidth="640"
       Title="ReceiptPage">
 
-    <Grid>
-        
+    <Page.Resources>
+        <SolidColorBrush x:Key="beige" Color="#d7dbc0"></SolidColorBrush>
+        <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
+        <SolidColorBrush x:Key="blue" Color="#ddf0f3"></SolidColorBrush>
+        <SolidColorBrush x:Key="greyblue" Color="#b9d1d5"></SolidColorBrush>
+        <SolidColorBrush x:Key="khaki" Color="#797d65"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkblue" Color="#405a5f"></SolidColorBrush>
+        <SolidColorBrush x:Key="mutedred" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="red" Color="#89280f"></SolidColorBrush>
+        <SolidColorBrush x:Key="lightbeige" Color="#e3e5d8"></SolidColorBrush>
+
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource red}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <Style x:Key="ColumnHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="{StaticResource mutedred}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="GridCell" TargetType="DataGridCell">
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+        </Style>
+
+        <Style x:Key="GreenBlock" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:ReceiptVM></vm:ReceiptVM>
+    </Page.DataContext>
+
+    <Grid Background="{StaticResource beige}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="480"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="420" />
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="360" />
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="{StaticResource darkblue}" BorderThickness="1"  Grid.Row="1" Grid.Column="1">
+                <Canvas Grid.Row="1" Grid.Column="1" Background="{StaticResource lightbeige}" />
+            </Border>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="190" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="ioana's convenience store" Style="{StaticResource GreenBlock}" Foreground="{StaticResource mutedred}" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Center"/>
+
+                <WrapPanel Grid.Row="1">
+                    <TextBlock Text="receipt id:" Style="{StaticResource GreenBlock}" HorizontalAlignment="Left" />
+                    <TextBlock Name="IdTxB" Text ="{Binding ElementName=ReceiptGrid, Path=SelectedItem.ID, UpdateSourceTrigger=PropertyChanged}" 
+                               Style="{StaticResource GreenBlock}" HorizontalAlignment="Right"/>
+                </WrapPanel>
+                <WrapPanel Grid.Row="2">
+                    <TextBlock Text="your cashier today:" Style="{StaticResource GreenBlock}" HorizontalAlignment="Left" />
+                    <TextBlock Name="CashierTxB" Text ="{Binding ElementName=ReceiptGrid, Path=SelectedItem.CashierUsername, UpdateSourceTrigger=PropertyChanged}" 
+                               Style="{StaticResource GreenBlock}" HorizontalAlignment="Right"/>
+                </WrapPanel>
+                <WrapPanel Grid.Row="3">
+                    <TextBlock Text="date:" Style="{StaticResource GreenBlock}" HorizontalAlignment="Left" />
+                    <TextBlock Name="DateTxB" Text="{Binding ElementName=ReceiptGrid, Path=SelectedItem.PaymentDate, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:dd-MM-yyyy}}" 
+                               Style="{StaticResource GreenBlock}" HorizontalAlignment="Right"/>
+                </WrapPanel>
+
+                <ItemsControl Grid.Row="4" ItemsSource="{Binding ElementName=ReceiptGrid, Path=SelectedItem.StringSublists}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Style="{StaticResource GreenBlock}" Margin="10,2,0,2"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="TOTAL:" Grid.Row="5" Style="{StaticResource GreenBlock}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Name="TotalTxB" Grid.Row="5"  Text ="{Binding ElementName=ReceiptGrid, Path=SelectedItem.Total, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource GreenBlock}" 
+                           VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,0,20,0" />
+
+
+                <TextBlock Grid.Row="6" Text="thank you for shopping here!" Style="{StaticResource GreenBlock}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            </Grid>
+        </Grid>
+
+     
+        <DataGrid Name="ReceiptGrid" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Right" ItemsSource="{Binding Receipts}"
+                  Width="130" Height="170" IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Receipt" Binding="{Binding ID}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Height" Value="19"/>
+                    <Setter Property="Foreground" Value="{StaticResource green}"/>
+                    <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+                    <Setter Property="FontFamily" Value="Cascadia Code"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+
     </Grid>
 </Page>

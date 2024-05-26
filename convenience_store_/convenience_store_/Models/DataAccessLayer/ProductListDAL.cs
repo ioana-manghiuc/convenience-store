@@ -117,5 +117,75 @@ namespace convenience_store_.Models.DataAccessLayer
             }
         }
 
+        static public ProductList GetSublistWithId(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetSublistWithId", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", id);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        ProductList p = new ProductList();
+                        p.ID = reader.GetInt32(0);
+                        p.ProductID = reader.GetInt32(1);
+                        p.ProductName = ProductDAL.GetProductWithId(p.ProductID);
+                        p.Quantity = reader.GetInt32(2);
+                        p.Subtotal = reader.IsDBNull(3) ? 0.0f : (float)reader.GetDouble(3);
+                        p.IsActive = reader.GetBoolean(4);
+                        return p;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                StoreException.Error(e.Message);
+                return null;
+            }
+        }
+
+        static public ObservableCollection<ProductList> GetListsFromReceipt(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetListsFromReceipt", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", id);
+                    ObservableCollection<ProductList> result = new ObservableCollection<ProductList>();
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ProductList p = new ProductList();
+                        p.ID = reader.GetInt32(0);
+                        p.ProductID = reader.GetInt32(1);
+                        p.ProductName = ProductDAL.GetProductWithId(p.ProductID);
+                        p.Quantity = reader.GetInt32(2);
+                        p.Subtotal = reader.IsDBNull(3) ? 0.0f : (float)reader.GetDouble(3);
+                        p.IsActive = reader.GetBoolean(4);
+                        result.Add(p);
+                    }
+                    reader.Close();
+                    return result;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                StoreException.Error(e.Message);
+                return null;
+            }
+        }
+
     }
 }

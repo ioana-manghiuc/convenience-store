@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using convenience_store_.Models.EntityLayer;
+using convenience_store_.ViewModels;
 
 namespace convenience_store_.Models
 {
@@ -11,8 +13,8 @@ namespace convenience_store_.Models
     {
         // ID, PaymentDate, CashierID, SublistID, Total, IsActive
 
-        private int? id;
-        public int? ID
+        private int id;
+        public int ID
         {
             get { return id; }
             set
@@ -33,8 +35,8 @@ namespace convenience_store_.Models
             }
         }
 
-        private int? cashierId;
-        public int? CashierID
+        private int cashierId;
+        public int CashierID
         {
             get { return cashierId; }
             set
@@ -44,19 +46,63 @@ namespace convenience_store_.Models
             }
         }
 
-        private int? sublistId;
-        public int? SublistID
+        private string cashierUsername;
+        public string CashierUsername
         {
-            get { return sublistId; }
+            get { return cashierUsername; }
             set
             {
-                sublistId = value;
-                NotifyPropertyChanged("SublistID");
+                cashierUsername = value;
+                NotifyPropertyChanged("CashierUsername");
             }
         }
 
-        private float? total;
-        public float? Total
+        private ObservableCollection<ProductList> sublists;
+        public ObservableCollection<ProductList> Sublists
+        {
+            get { return sublists; }
+            set
+            {
+                sublists = value;
+                NotifyPropertyChanged("Sublists");
+            }
+        }
+
+        private ObservableCollection<string> stsublists;
+        public ObservableCollection<string> StringSublists
+        {
+            get
+            {
+                if (stsublists == null)
+                {
+                    stsublists = new ObservableCollection<string>();
+                    foreach (var list in Sublists)
+                    {
+                        if (list.ProductName.Length > 13)
+                        {
+                            string firstPart = $"{list.Quantity}x {list.ProductName}";
+                            string secondPart = $"{list.Subtotal,29:N2} RON";
+                            stsublists.Add(firstPart);
+                            stsublists.Add(secondPart);
+                        }
+                        else
+                        {
+                            string formattedString = $"{list.Quantity}x {list.ProductName,-15} {list.Subtotal,10:N2} RON";
+                            stsublists.Add(formattedString);
+                        }
+                    }
+                }
+                return stsublists;
+            }
+            set
+            {
+                stsublists = value;
+                NotifyPropertyChanged("StringSublists");
+            }
+        }
+
+        private float total;
+        public float Total
         {
             get { return total; }
             set
@@ -66,8 +112,8 @@ namespace convenience_store_.Models
             }
         }
 
-        private bool? isActive;
-        public bool? IsActive
+        private bool isActive;
+        public bool IsActive
         {
             get { return isActive; }
             set

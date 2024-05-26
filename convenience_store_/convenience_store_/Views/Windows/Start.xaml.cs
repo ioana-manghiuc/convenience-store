@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using convenience_store_.Models;
+using convenience_store_.ViewModels;
 using convenience_store_.Models.DataAccessLayer;
 using convenience_store_.Views;
 using convenience_store_.Converters_Exceptions;
@@ -14,6 +15,7 @@ namespace convenience_store_
         public Start()
         {
             InitializeComponent();
+            ReceiptVM vm = new ReceiptVM();
         }
 
         private void Login(object sender, RoutedEventArgs e)

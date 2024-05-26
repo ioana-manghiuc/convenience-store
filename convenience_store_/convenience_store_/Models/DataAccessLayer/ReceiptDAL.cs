@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace convenience_store_.Models.DataAccessLayer
 {
-    public class ReceiptDAL
+    static public class ReceiptDAL
     {
-        public ObservableCollection<Receipt> GetAllReceipts()
+        static public ObservableCollection<Receipt> GetAllReceipts()
         {
             using(SqlConnection connection = DALHelper.Connection)
             {
@@ -24,9 +24,10 @@ namespace convenience_store_.Models.DataAccessLayer
                     r.ID = reader.GetInt32(0);
                     r.PaymentDate = reader.GetDateTime(1);
                     r.CashierID = reader.GetInt32(2);
-                    r.SublistID = reader.GetInt32(3);
-                    r.Total = reader.GetFloat(4);
-                    r.IsActive = reader.GetBoolean(5);
+                    r.CashierUsername = UserDAL.GetUsernameWithId(r.CashierID);
+                    r.Sublists = ProductListDAL.GetListsFromReceipt(r.ID);
+                    r.Total = reader.IsDBNull(3) ? 0.0f : (float)reader.GetDouble(3);
+                    r.IsActive = reader.GetBoolean(4);
                     result.Add(r);
                 }
                 reader.Close();

@@ -16,9 +16,9 @@ namespace convenience_store_.Models.BusinessLogicLayer
             {
                 StoreException.Error("Product name must be specified");
             }
-            else if(string.IsNullOrEmpty(product.Barcode))
+            else if(string.IsNullOrEmpty(product.Barcode) || product.Barcode.Length != 12)
             {
-                StoreException.Error("Barcode must be specified");
+                StoreException.Error("Barcode must be exactly 12 characters long and cannot be empty");
             }
             else if(string.IsNullOrEmpty(product.CategoryName))
             {
@@ -47,9 +47,9 @@ namespace convenience_store_.Models.BusinessLogicLayer
             {
                 StoreException.Error("Product name must be specified");
             }
-            else if (string.IsNullOrEmpty(product.Barcode))
+            else if (string.IsNullOrEmpty(product.Barcode) || product.Barcode.Length != 12)
             {
-                StoreException.Error("Barcode must be specified");
+                StoreException.Error("Barcode must be exactly 12 characters long and cannot be empty");
             }
             else if (product.CategoryID == 0)
             {

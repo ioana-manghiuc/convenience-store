@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\ManufacturerVM.cs" />
     <Compile Include="ViewModels\ProductListVM.cs" />
     <Compile Include="ViewModels\ProductVM.cs" />
+    <Compile Include="ViewModels\ReceiptVM.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Page Include="Views\Pages\CategoryPage.xaml">
       <SubType>Designer</SubType>
