@@ -21,9 +21,14 @@ namespace convenience_store_.Views
             MainFrame.Navigate(new CSearch());
         }
 
-        private void CreateSublists(object sender, RoutedEventArgs e)
+        private void CreateSublistsBtn(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new CreateSublists());
+        }
+
+        private void SeeReceiptsBtn(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new SeeReceipts());
         }
     }
 }

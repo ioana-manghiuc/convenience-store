@@ -99,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CashierPages\SeeReceipts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\CategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +178,9 @@
     </Compile>
     <Compile Include="Views\CashierPages\CSearch.xaml.cs">
       <DependentUpon>CSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CashierPages\SeeReceipts.xaml.cs">
+      <DependentUpon>SeeReceipts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\CategoryPage.xaml.cs">
       <DependentUpon>CategoryPage.xaml</DependentUpon>

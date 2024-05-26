@@ -97,6 +97,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
     </Page.Resources>
 
     <Page.DataContext>
