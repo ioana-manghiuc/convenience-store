@@ -121,7 +121,63 @@ namespace convenience_store_.Models.DataAccessLayer
             {
                 StoreException.Error(e.Message);
             }
-        } 
+        }
+
+        static public string GetProductWithId(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetProductNameWithId", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", id);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        return reader.GetString(0);
+                    }
+
+                    reader.Close();
+                    return null;
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
+                return null;
+            }
+        }
+
+        static public int GetProductIdWithName(string name)
+        {
+            try
+            {
+                using(SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("GetProductIdWithName", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Name", name);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        return reader.GetInt32(0);
+                    }
+
+                    reader.Close();
+                    return -1;
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
+                return -1;
+            }
+        }
 
     }
 }

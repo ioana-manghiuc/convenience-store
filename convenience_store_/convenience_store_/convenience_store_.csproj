@@ -76,13 +76,16 @@
     <Compile Include="Converters-Exceptions\CategoryConverter.cs" />
     <Compile Include="Converters-Exceptions\ManufacturerConverter.cs" />
     <Compile Include="Converters-Exceptions\ProductConverter.cs" />
+    <Compile Include="Converters-Exceptions\ProductListConverter.cs" />
     <Compile Include="Converters-Exceptions\StoreException.cs" />
+    <Compile Include="Converters-Exceptions\StringToIntConverter.cs" />
     <Compile Include="Converters-Exceptions\UserConverter.cs" />
     <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
     <Compile Include="Models\DataAccessLayer\CategoryDAL.cs" />
     <Compile Include="Models\EntityLayer\Category.cs" />
     <Compile Include="ViewModels\CategoryVM.cs" />
     <Compile Include="ViewModels\ManufacturerVM.cs" />
+    <Compile Include="ViewModels\ProductListVM.cs" />
     <Compile Include="ViewModels\ProductVM.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Page Include="Views\Pages\CategoryPage.xaml">

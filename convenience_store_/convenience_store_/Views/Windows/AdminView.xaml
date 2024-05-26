@@ -70,7 +70,7 @@
         <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource RoundedButtonStyle}" Width="50" Height="50" Grid.RowSpan="2" HorizontalAlignment="Left"
                 Click="SearchBtn">
             <Button.Content>
-                <Image Source="pack://application:,,,/convenience_store_;component/Resources/search.png" Width="45" Height="45"/>
+                <Image Source="pack://application:,,,/convenience_store_;component/Resources/search.png" Width="50" Height="50"/>
             </Button.Content>
         </Button> 
         
