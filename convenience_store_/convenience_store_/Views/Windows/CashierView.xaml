@@ -69,9 +69,9 @@
             </Button.Content>
         </Button>
 
-        <Button Content="create lists" Grid.Column="1" Grid.Row="3" Style="{StaticResource RoundedButtonStyle}" Click="CreateSublistsBtn" />
-        <Button Content="create receipt" Grid.Column="1" Grid.Row="5" Style="{StaticResource RoundedButtonStyle}"   />
-        <Button Content="create links" Grid.Column="1" Grid.Row="7" Style="{StaticResource RoundedButtonStyle}"   />
+        <Button Content="sublists" Grid.Column="1" Grid.Row="3" Style="{StaticResource RoundedButtonStyle}" Click="CreateSublistsBtn" />
+        <Button Content="create receipt" Grid.Column="1" Grid.Row="5" Style="{StaticResource RoundedButtonStyle}" Click="CreateReceiptBtn" />
+        <Button Content="finalize receipt" Grid.Column="1" Grid.Row="7" Style="{StaticResource RoundedButtonStyle}"  Click="FinalizeReceiptBtn" />
         <Button Content="see receipts" Grid.Column="1" Grid.Row="9" Style="{StaticResource RoundedButtonStyle}"  Click="SeeReceiptsBtn"  />
 
         <Frame x:Name="MainFrame" Grid.Column="3" Grid.Row="1" Grid.RowSpan="10" NavigationUIVisibility="Hidden"/>

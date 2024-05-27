@@ -162,7 +162,16 @@ namespace convenience_store_.Models.DataAccessLayer
                     command.Parameters.AddWithValue("@Username", username);
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    return reader.GetInt32(0);
+                    if (reader.Read()) // Check if there are any rows to read
+                    {
+                        return reader.GetInt32(0);
+                    }
+                    else
+                    {
+                        // Handle the case where no rows are returned
+                        StoreException.Error("No user found with the specified username.");
+                        return 0;
+                    }
                 }
             }
             catch (SqlException ex)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using convenience_store_.Converters_Exceptions;
@@ -119,7 +120,7 @@ namespace convenience_store_.Models.DataAccessLayer
             }
         }
 
-        const int VAT = 19;
+        static int VAT = StockConverter.ConvertToInt(ConfigurationManager.AppSettings["VAT"]);
 
     }
 }

@@ -36,7 +36,7 @@ namespace convenience_store_.Converters_Exceptions
             throw new NotImplementedException();
         }
 
-        private int ConvertToInt(object value)
+        static public int ConvertToInt(object value)
         {
             if (value is int)
             {

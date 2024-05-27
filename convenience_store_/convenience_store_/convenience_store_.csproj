@@ -74,9 +74,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters-Exceptions\CategoryConverter.cs" />
+    <Compile Include="Converters-Exceptions\LinkerConverter.cs" />
     <Compile Include="Converters-Exceptions\ManufacturerConverter.cs" />
     <Compile Include="Converters-Exceptions\ProductConverter.cs" />
     <Compile Include="Converters-Exceptions\ProductListConverter.cs" />
+    <Compile Include="Converters-Exceptions\ReceiptConverter.cs" />
     <Compile Include="Converters-Exceptions\StockConverter.cs" />
     <Compile Include="Converters-Exceptions\StoreException.cs" />
     <Compile Include="Converters-Exceptions\StringToFloatConverter.cs" />
@@ -91,11 +93,19 @@
     <Compile Include="ViewModels\ProductVM.cs" />
     <Compile Include="ViewModels\ReceiptVM.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Page Include="Views\CashierPages\CreateReceipt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CashierPages\CreateSublists.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CashierPages\CSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CashierPages\FinalizeReceipt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,11 +183,17 @@
     <Compile Include="Models\EntityLayer\User.cs" />
     <Compile Include="ViewModels\StockVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
+    <Compile Include="Views\CashierPages\CreateReceipt.xaml.cs">
+      <DependentUpon>CreateReceipt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CashierPages\CreateSublists.xaml.cs">
       <DependentUpon>CreateSublists.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CashierPages\CSearch.xaml.cs">
       <DependentUpon>CSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CashierPages\FinalizeReceipt.xaml.cs">
+      <DependentUpon>FinalizeReceipt.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CashierPages\SeeReceipts.xaml.cs">
       <DependentUpon>SeeReceipts.xaml</DependentUpon>
