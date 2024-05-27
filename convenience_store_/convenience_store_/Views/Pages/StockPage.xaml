@@ -197,7 +197,7 @@
         <DataGrid Name="StockGrid" Grid.Column="1" Grid.Row="5" ItemsSource="{Binding StockList}"
        IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Product" Binding="{Binding ProductID}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+                <DataGridTextColumn Header="Product" Binding="{Binding ProductName}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" HeaderStyle="{StaticResource ColumnHeader}" Width="90"/>
                 <DataGridTextColumn Header="Unit" Binding="{Binding UnitOfMeasurement}" HeaderStyle="{StaticResource ColumnHeader}" Width="70"/>
                 <DataGridTextColumn Header="Supply Date" Binding="{Binding SupplyDate}" HeaderStyle="{StaticResource ColumnHeader}" Width="150"/>

@@ -171,7 +171,7 @@
         <DataGrid Name="SublistGrid" Grid.Column="1" Grid.Row="5" ItemsSource="{Binding ProductLists}"
       IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Product" Binding="{Binding ProductID}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+                <DataGridTextColumn Header="Product" Binding="{Binding ProductName}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
                 <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal}" HeaderStyle="{StaticResource ColumnHeader}" Width="170"/>
                 <DataGridCheckBoxColumn Header="Active" Binding="{Binding IsActive}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>

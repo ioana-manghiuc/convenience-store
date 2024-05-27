@@ -16,8 +16,6 @@ namespace convenience_store_.Converters_Exceptions
                 int first = ConvertToInt(values[0]);
                 int second = ConvertToInt(values[1]);
 
-                Console.WriteLine($"First: {first}, Second: {second}");
-
                 return new Pair<int,int>()
                 {
                     First = first,

@@ -186,7 +186,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" HeaderStyle="{StaticResource ColumnHeader}" Width="70"/>
                 <DataGridTextColumn Header="Payment Date" Binding="{Binding PaymentDate}" HeaderStyle="{StaticResource ColumnHeader}" Width="140"/>
-                <DataGridTextColumn Header="Cashier ID" Binding="{Binding CashierID}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+                <DataGridTextColumn Header="Cashier" Binding="{Binding CashierUsername}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
                 <DataGridTextColumn Header="Total" Binding="{Binding Total}" HeaderStyle="{StaticResource ColumnHeader}" Width="100"/>
                 <DataGridCheckBoxColumn Header="Active" Binding="{Binding IsActive}" HeaderStyle="{StaticResource ColumnHeader}" Width="80"/>
                 <DataGridCheckBoxColumn Header="Finalized" Binding="{Binding Finalized}" HeaderStyle="{StaticResource ColumnHeader}" Width="100"/>
