@@ -76,6 +76,7 @@
     <Compile Include="Converters-Exceptions\CategoryConverter.cs" />
     <Compile Include="Converters-Exceptions\LinkerConverter.cs" />
     <Compile Include="Converters-Exceptions\ManufacturerConverter.cs" />
+    <Compile Include="Converters-Exceptions\Pair.cs" />
     <Compile Include="Converters-Exceptions\ProductConverter.cs" />
     <Compile Include="Converters-Exceptions\ProductListConverter.cs" />
     <Compile Include="Converters-Exceptions\ReceiptConverter.cs" />

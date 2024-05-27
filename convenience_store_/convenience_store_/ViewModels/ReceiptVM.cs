@@ -4,6 +4,9 @@ using convenience_store_.Models.DataAccessLayer;
 using convenience_store_.Models.EntityLayer;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Collections.Generic;
+using convenience_store_.Converters_Exceptions;
+
 
 
 namespace convenience_store_.ViewModels
@@ -18,6 +21,7 @@ namespace convenience_store_.ViewModels
             FinalizedReceipts = new ObservableCollection<Receipt>();
             ModifiableReceipts = new ObservableCollection<Receipt>();
             ObjSublists = new ObservableCollection<ProductList>();
+            LinkedPairs = ReceiptBLL.GetAllLinks();
 
             foreach(User user in UserDAL.GetAllUsers())
             {
@@ -105,6 +109,20 @@ namespace convenience_store_.ViewModels
             }
         }
 
+        private ICommand addLink;
+        public ICommand AddLink
+        {
+            get
+            {
+                if (addLink == null)
+                {   
+                    addLink = new RelayCommand<Pair<int, int>>(ReceiptBLL.AddLink);
+                }
+                return addLink;
+            }
+        }
+
+
         public ObservableCollection<Receipt> Receipts
         {
             get => ReceiptBLL.Receipts;
@@ -117,6 +135,6 @@ namespace convenience_store_.ViewModels
         public ObservableCollection<Receipt> FinalizedReceipts { get; set;}
         public ObservableCollection<Receipt> ModifiableReceipts { get; set;}
 
-
+        public ObservableCollection<Pair<int,int>> LinkedPairs { get; set; }
     }
 }

@@ -10,11 +10,19 @@ namespace convenience_store_.Converters_Exceptions
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values != null && values.Length == 1 && values[0] != null)
+            if (values != null && values.Length == 2 && values[0] != null
+                && values[1] != null)
             {
                 int first = ConvertToInt(values[0]);
                 int second = ConvertToInt(values[1]);
-                return new KeyValuePair<int,int>(first,second);
+
+                Console.WriteLine($"First: {first}, Second: {second}");
+
+                return new Pair<int,int>()
+                {
+                    First = first,
+                    Second = second
+                };
             }
             return null;
         }

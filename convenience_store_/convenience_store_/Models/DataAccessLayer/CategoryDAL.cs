@@ -32,18 +32,25 @@ namespace convenience_store_.Models.DataAccessLayer
 
         static public void AddCategory(Category category, int id)
         {
-            using (SqlConnection connection = DALHelper.Connection)
+            try
             {
-                SqlCommand command = new SqlCommand("AddCategory", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramCategID = new SqlParameter("@ID", id);
-                SqlParameter paramCategName = new SqlParameter("@CategName", category.CategName);
-                SqlParameter paramCategStatus = new SqlParameter("@IsActive", true);
-                command.Parameters.Add(paramCategID);
-                command.Parameters.Add(paramCategName);
-                command.Parameters.Add(paramCategStatus);
-                connection.Open();
-                command.ExecuteNonQuery();
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("AddCategory", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    SqlParameter paramCategID = new SqlParameter("@ID", id);
+                    SqlParameter paramCategName = new SqlParameter("@CategName", category.CategName);
+                    SqlParameter paramCategStatus = new SqlParameter("@IsActive", true);
+                    command.Parameters.Add(paramCategID);
+                    command.Parameters.Add(paramCategName);
+                    command.Parameters.Add(paramCategStatus);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                StoreException.Error(ex.Message);
             }
         }
 

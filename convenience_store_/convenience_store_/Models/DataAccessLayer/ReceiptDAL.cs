@@ -108,7 +108,6 @@ namespace convenience_store_.Models.DataAccessLayer
                     SqlCommand command = new SqlCommand("FinalizeReceipt", connection);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@ID", receipt.ID);
-                    command.Parameters.AddWithValue("@Finalized", true);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -119,6 +118,44 @@ namespace convenience_store_.Models.DataAccessLayer
             }
         }
 
-        // add link which adds the pair int int to the Linker table in the database
+        static public void AddLink(Pair<int, int> link)
+        {
+            try
+            {
+                using(SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("AddLink", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@First", link.First);
+                    command.Parameters.AddWithValue("@Second", link.Second);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                StoreException.Error(ex.Message);
+            }
+        }
+
+        static public ObservableCollection<Pair<int, int>> GetAllLinks()
+        {
+            using(SqlConnection connection = DALHelper.Connection)
+            {
+                SqlCommand command = new SqlCommand("GetAllLinks", connection);
+                ObservableCollection<Pair<int, int>> result = new ObservableCollection<Pair<int, int>>();
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while(reader.Read())
+                {
+                    Pair<int, int> p = new Pair<int, int>();
+                    p.First = reader.GetInt32(0);
+                    p.Second = reader.GetInt32(1);
+                    result.Add(p);
+                }
+                reader.Close();
+                return result;
+            }
+        }
     }
 }

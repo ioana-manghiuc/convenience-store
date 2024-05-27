@@ -56,22 +56,29 @@ namespace convenience_store_.Models.DataAccessLayer
 
         static public void AddUser(User user, int id)
         {
-            using(SqlConnection connection = DALHelper.Connection)
+            try
             {
-                SqlCommand command = new SqlCommand("AddUser", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramUserID = new SqlParameter("@ID", id);
-                SqlParameter paramUserName = new SqlParameter("@Username", user.Username);
-                SqlParameter paramUserPass = new SqlParameter("@Password", user.Password);
-                SqlParameter paramUserRole = new SqlParameter("@Role", user.Role);
-                SqlParameter paramUserStatus = new SqlParameter("@IsActive", true);
-                command.Parameters.Add(paramUserID);
-                command.Parameters.Add(paramUserName);
-                command.Parameters.Add(paramUserPass);
-                command.Parameters.Add(paramUserRole);
-                command.Parameters.Add(paramUserStatus);
-                connection.Open();
-                command.ExecuteNonQuery();
+                using (SqlConnection connection = DALHelper.Connection)
+                {
+                    SqlCommand command = new SqlCommand("AddUser", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    SqlParameter paramUserID = new SqlParameter("@ID", id);
+                    SqlParameter paramUserName = new SqlParameter("@Username", user.Username);
+                    SqlParameter paramUserPass = new SqlParameter("@Password", user.Password);
+                    SqlParameter paramUserRole = new SqlParameter("@Role", user.Role);
+                    SqlParameter paramUserStatus = new SqlParameter("@IsActive", true);
+                    command.Parameters.Add(paramUserID);
+                    command.Parameters.Add(paramUserName);
+                    command.Parameters.Add(paramUserPass);
+                    command.Parameters.Add(paramUserRole);
+                    command.Parameters.Add(paramUserStatus);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch(SqlException ex)
+            {
+                StoreException.Error(ex.Message);
             }
         }
 

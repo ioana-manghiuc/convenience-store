@@ -79,9 +79,26 @@ namespace convenience_store_.Models.BusinessLogicLayer
             }
         }
 
+        static public void AddLink(Pair<int, int> link)
+        {
+            if(link == null)
+            {
+                StoreException.Error("Link cannot be null.");
+            }
+            else
+            {
+                ReceiptDAL.AddLink(link);
+            }
+        }
+
         static public ObservableCollection<Receipt> GetAllReceipts()
         {
             return ReceiptDAL.GetAllReceipts();
+        }
+
+        static public ObservableCollection<Pair<int, int>> GetAllLinks()
+        {
+            return ReceiptDAL.GetAllLinks();
         }
     }
 }

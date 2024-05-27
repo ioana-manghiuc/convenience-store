@@ -99,6 +99,7 @@
             <Setter Property="Width" Value="180"/>
             <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
             <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Template">
@@ -138,9 +139,7 @@
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="350"/>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
@@ -151,18 +150,27 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <Button Content="add" Grid.Row="0" Grid.Column="4" Style="{StaticResource RoundedButtonStyle}" Width="100" >
-                    <!--convert the strings to int and use LinkerConverter-->
+            <Button Content="add" Command="{Binding AddLink}" Grid.Row="0" Grid.Column="2" Style="{StaticResource RoundedButtonStyle}" Width="100" >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource linkerConverter}">
+                        <Binding ElementName="ReceiptIdTxB" Path="Text" Converter="{StaticResource stringToIntConverter}"/>
+                        <Binding ElementName="SublistIdTxB" Path="Text" Converter="{StaticResource stringToIntConverter}"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
             </Button>
-            <TextBox Name="ReceiptIdTxB" Grid.Row="1" Grid.Column="4" Text ="{Binding ElementName=ReceiptGrid, 
+            
+            <TextBox Name="ReceiptIdTxB" Grid.Row="1" Grid.Column="2" Text ="{Binding ElementName=ReceiptGrid, 
                     Path=SelectedItem.ID, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
-            <TextBox Name="SublistIdTxB" Grid.Row="2" Grid.Column="4" Text ="{Binding ElementName=SublistGrid, 
+            <TextBox Name="SublistIdTxB" Grid.Row="2" Grid.Column="2" Text ="{Binding ElementName=SublistGrid, 
                     Path=SelectedItem.ID, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox}"/>
 
-            <DataGrid Name="ReceiptGrid" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" ItemsSource="{Binding ModifiableReceipts}"  Width="130" Height="170"
+            <DataGrid Name="ReceiptGrid" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" ItemsSource="{Binding ModifiableReceipts}" Width="300" Height="170"
                       IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" HeaderStyle="{StaticResource ColumnHeader}" Width="70" />
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" HeaderStyle="{StaticResource ColumnHeader}" Width="60" />
+                    <DataGridTextColumn Header="Payment Date" Binding="{Binding PaymentDate}" HeaderStyle="{StaticResource ColumnHeader}" Width="140" />
+                    <DataGridTextColumn Header="Cashier" Binding="{Binding CashierUsername}" HeaderStyle="{StaticResource ColumnHeader}" Width="100" />
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" HeaderStyle="{StaticResource ColumnHeader}" Width="80" />
                 </DataGrid.Columns>
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
@@ -175,24 +183,6 @@
                 </DataGrid.CellStyle>
 
             </DataGrid>
-
-            <DataGrid Name="SublistGrid" Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" ItemsSource="{Binding ObjSublists}"  Width="130" Height="170"
-          IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" HeaderStyle="{StaticResource ColumnHeader}" Width="70" />
-                </DataGrid.Columns>
-                <DataGrid.CellStyle>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Foreground" Value="{StaticResource green}"/>
-                        <Setter Property="Background" Value="{StaticResource lightbeige}"/>
-                        <Setter Property="FontFamily" Value="Cascadia Code"/>
-                        <Setter Property="FontSize" Value="14"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                    </Style>
-                </DataGrid.CellStyle>
-
-            </DataGrid>
-
 
         </Grid>
 
@@ -203,7 +193,29 @@
                 <ColumnDefinition Width="260"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="FINALIZE" Grid.Column="2" Style="{StaticResource RoundedButtonStyle}" FontStyle="Italic" />
+            <Button Content="FINALIZE" Command="{Binding FinalizeCommand}" CommandParameter="{Binding ElementName=ReceiptGrid, Path=SelectedItem}" 
+                    Grid.Column="2" Style="{StaticResource RoundedButtonStyle}" />
+
+            <DataGrid Name="SublistGrid" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" ItemsSource="{Binding ObjSublists}"  Width="300" Height="170"
+                        IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" HeaderStyle="{StaticResource ColumnHeader}" Width="60" />
+                    <DataGridTextColumn Header="Product" Binding="{Binding ProductName}" HeaderStyle="{StaticResource ColumnHeader}" Width="170" />
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" HeaderStyle="{StaticResource ColumnHeader}" Width="90" />
+                    <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal}" HeaderStyle="{StaticResource ColumnHeader}" Width="90" />
+                </DataGrid.Columns>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Foreground" Value="{StaticResource green}"/>
+                        <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+                        <Setter Property="FontFamily" Value="Cascadia Code"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.CellStyle>
+
+            </DataGrid>
+
         </Grid>
 
     </Grid>

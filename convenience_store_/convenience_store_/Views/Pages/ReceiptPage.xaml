@@ -103,7 +103,7 @@
                 <TextBlock Grid.Row="0" Text="ioana's convenience store" Style="{StaticResource GreenBlock}" Foreground="{StaticResource mutedred}" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Center"/>
 
                 <WrapPanel Grid.Row="1">
-                    <TextBlock Text="receipt id:" Style="{StaticResource GreenBlock}" HorizontalAlignment="Left" />
+                    <TextBlock Text="receipt no." Style="{StaticResource GreenBlock}" HorizontalAlignment="Left" />
                     <TextBlock Name="IdTxB" Text ="{Binding ElementName=ReceiptGrid, Path=SelectedItem.ID, UpdateSourceTrigger=PropertyChanged}" 
                                Style="{StaticResource GreenBlock}" HorizontalAlignment="Right"/>
                 </WrapPanel>
@@ -142,7 +142,7 @@
         </Grid>
 
      
-        <DataGrid Name="ReceiptGrid" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Right" ItemsSource="{Binding Receipts}"
+        <DataGrid Name="ReceiptGrid" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Right" ItemsSource="{Binding FinalizedReceipts}"
                   Width="130" Height="170" IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Receipt" Binding="{Binding ID}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
