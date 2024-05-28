@@ -194,8 +194,8 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
                 <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
                 <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDate}" HeaderStyle="{StaticResource ColumnHeader}" Width="170"/>
-                <DataGridTextColumn Header="Category" Binding="{Binding CategoryID}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
-                <DataGridTextColumn Header="Manufacturer" Binding="{Binding ManufacturerID}" HeaderStyle="{StaticResource ColumnHeader}" Width="160"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding CategoryName}" HeaderStyle="{StaticResource ColumnHeader}" Width="120"/>
+                <DataGridTextColumn Header="Manufacturer" Binding="{Binding ManufacturerName}" HeaderStyle="{StaticResource ColumnHeader}" Width="160"/>
                 <DataGridCheckBoxColumn Header="Active" Binding="{Binding IsActive}" HeaderStyle="{StaticResource ColumnHeader}" Width="90"/>
             </DataGrid.Columns>
             <DataGrid.CellStyle>
