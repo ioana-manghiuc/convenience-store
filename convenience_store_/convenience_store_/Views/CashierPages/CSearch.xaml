@@ -4,11 +4,105 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:convenience_store_.Views.CashierPages"
+      xmlns:vm="clr-namespace:convenience_store_.ViewModels" 
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="660"
+        d:DesignHeight="450" d:DesignWidth="660"
       Title="CSearch">
 
-    <Grid>
+    <Page.Resources>
+        <SolidColorBrush x:Key="beige" Color="#d7dbc0"></SolidColorBrush>
+        <SolidColorBrush x:Key="green" Color="#44473e"></SolidColorBrush>
+        <SolidColorBrush x:Key="blue" Color="#4b575e"></SolidColorBrush>
+        <SolidColorBrush x:Key="greyblue" Color="#d0e7ea"></SolidColorBrush>
+        <SolidColorBrush x:Key="khaki" Color="#8c9177"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkblue" Color="#65858a"></SolidColorBrush>
+        <SolidColorBrush x:Key="red" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="darkred" Color="#47060b"></SolidColorBrush>
+        <SolidColorBrush x:Key="background" Color="#dfded4"></SolidColorBrush>
+        <SolidColorBrush x:Key="lightbeige" Color="#e3e5d8"></SolidColorBrush>
+        <SolidColorBrush x:Key="mutedred" Color="#5d1705"></SolidColorBrush>
+        <SolidColorBrush x:Key="light" Color="#edece6"></SolidColorBrush>
+
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource lightbeige}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource darkblue}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <Style x:Key="ColumnHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="GridCell" TargetType="DataGridCell">
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="Background" Value="{StaticResource background}"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+        </Style>
+
+        <Style x:Key="GreenBlock" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+        </Style>
+
+        <Style x:Key="CustomTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="450"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="FontWeight" Value="UltraBold"/>
+            <Setter Property="Foreground" Value="{StaticResource darkblue}"/>
+            <Setter Property="Background" Value="{StaticResource light}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="CustomListBox" TargetType="ListBox">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="MingLiU-ExtB"/>
+            <Setter Property="Foreground" Value="{StaticResource green}"/>
+            <Setter Property="Background" Value="{StaticResource light}"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:ProductVM></vm:ProductVM>
+    </Page.DataContext>
+
+    <Grid Background="{StaticResource background}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="250" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
         
+        <TextBox Grid.Row="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomTextBox }"/>
+        
+        <ListBox ItemsSource="{Binding FilteredProducts}" Grid.Row="2" Width="500" Style="{StaticResource CustomListBox}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="{Binding Barcode}"/>
+                        <TextBlock Text="{Binding ExpirationDate, StringFormat={}{0:dd-MM-yyyy}}"/>
+                        <TextBlock Text="{Binding CategoryName}"/>
+                        <TextBlock Text="{Binding ManufacturerName}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>
